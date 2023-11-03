@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "608677610252",
+    "project_id": "parcialtp3whale",
+    "storage_bucket": "parcialtp3whale.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608677610252:android:20196afee5aad649083f29",
+        "android_client_info": {
+          "package_name": "com.example.parcialgrupo3whale"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjpqvF5hf5r7Dqv_GTHlVUC0RjY1LrRN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

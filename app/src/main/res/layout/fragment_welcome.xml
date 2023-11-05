@@ -25,7 +25,8 @@
                 android:textSize="16sp"
                 android:textAlignment="center"
                 android:padding="16dp"
-                android:fontFamily="@font/poppins_thin" />
+                android:fontFamily="@font/poppins_thin"
+                android:textColor="@color/Welcome_Fragment_title"/>
 
         <EditText
                 android:id="@+id/editTextName"
@@ -34,7 +35,8 @@
                 android:hint="@string/txtEdit_welcome_fragment"
                 android:inputType="textPersonName"
                 android:padding="16dp"
-                android:fontFamily="@font/poppins_thin" />
+                android:fontFamily="@font/poppins_thin"
+                android:textColor="@color/Welcome_Fragment_text"/>
 
         <Button
                 android:id="@+id/buttonEnter"
@@ -42,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/btn_welcome_fragment"
                 android:padding="16dp"
-                android:fontFamily="@font/poppins_thin" />
+                android:fontFamily="@font/poppins_thin"
+                android:textColor="@color/white"/>
 
     </LinearLayout>
 

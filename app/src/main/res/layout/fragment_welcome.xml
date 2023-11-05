@@ -23,25 +23,28 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenido! Para continuar, por favor ingrese su nombre"
+                android:text="@string/txtView_welcome_fragment"
                 android:textSize="16sp"
                 android:textAlignment="center"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:fontFamily="@font/poppins_thin" />
 
         <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ingrese su nombre"
+                android:hint="@string/txtEdit_welcome_fragment"
                 android:inputType="textPersonName"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:fontFamily="@font/poppins_thin" />
 
         <Button
                 android:id="@+id/buttonEnter"
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
-                android:text="Ingresar"
-                android:padding="16dp"/>
+                android:text="@string/btn_welcome_fragment"
+                android:padding="16dp"
+                android:fontFamily="@font/poppins_thin" />
 
     </LinearLayout>
 

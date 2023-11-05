@@ -16,7 +16,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/welcomeDog_image"
+                android:src="@drawable/welcome_dog_image"
                 android:contentDescription="@string/img_welcome_fragment" />
         <TextView
                 android:layout_width="wrap_content"

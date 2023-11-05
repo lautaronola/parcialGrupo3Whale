@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.WelcomeFragment">
+
+    <!-- fragment_welcome.xml -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/welcome_dog_image"
+                android:contentDescription="@string/img_welcome_fragment" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtView_welcome_fragment"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:padding="16dp"
+                android:fontFamily="@font/poppins_thin"
+                android:textColor="@color/Welcome_Fragment_title"/>
+
+        <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtEdit_welcome_fragment"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:fontFamily="@font/poppins_thin"
+                android:textColor="@color/Welcome_Fragment_text"/>
+
+        <Button
+                android:id="@+id/buttonEnter"
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_welcome_fragment"
+                android:padding="16dp"
+                android:fontFamily="@font/poppins_thin"
+                android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</FrameLayout>

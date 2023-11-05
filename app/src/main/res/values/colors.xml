@@ -5,8 +5,8 @@
     <color name="background_Profile_button">#3D405B</color>
     <color name="profile_text">#001D42</color>
     <color name="profile_button_text"> #F4F1DE</color>
-    <color name='Welcome_title'>#5F5B5B</color>
-    <color name='Welcome_text'>#ADA8A8</color>
+    <color name='Welcome_Fragment_title'>#5F5B5B</color>
+    <color name='Welcome_Fragment_text'>#ADA8A8</color>
 
 
 

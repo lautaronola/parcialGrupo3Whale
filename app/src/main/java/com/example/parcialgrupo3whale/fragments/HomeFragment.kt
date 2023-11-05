@@ -14,9 +14,10 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val args: HomeFragmentArgs by navArgs()
+        enteredName = args.enteredName
     }
 
-   /* no se envía por argumento el nombre, hay que rever la logica deberia viajar de activity en activity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,5 +27,5 @@ class HomeFragment : Fragment() {
         val textView: TextView = view.findViewById(R.id.text1)
         textView.text = "Hola, $enteredName"
         return view
-    }*/
+    }
 }

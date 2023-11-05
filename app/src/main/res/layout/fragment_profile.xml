@@ -15,7 +15,8 @@
             tools:layout_editor_absoluteY="114dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/cardView">
+            android:id="@+id/cardView"
+            tools:ignore="MissingConstraints">
 
         <ImageView
                 android:id="@+id/profile_image"
@@ -53,7 +54,7 @@
     <Button
             android:text="@string/uploadPhoto"
             android:layout_width="127dp"
-            android:layout_height="47dp"
+            android:layout_height="48dp"
             android:id="@+id/button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -7,7 +7,6 @@ import com.example.parcialgrupo3whale.R
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_profile)
-        //setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.activity_welcome)
     }
 }

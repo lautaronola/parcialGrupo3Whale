@@ -15,11 +15,9 @@
         <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        <!-- IMAGEN DEL WELCOME, DEFINIR LUEGO
-        android:src="@drawable/ic_launcher_foreground"
-        android:contentDescription="Imagen de bienvenida" />
-        -->
+                android:layout_height="wrap_content"
+                android:src="@drawable/welcomeDog_image"
+                android:contentDescription="@string/img_welcome_fragment" />
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

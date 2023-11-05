@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.ProfileFragment">
+        tools:context=".fragments.ProfileFragment"
+        android:id="@+id/frameLayout">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="65dp"
+            tools:layout_editor_absoluteY="114dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/cardView">
+
+        <ImageView
+                android:id="@+id/profile_image"
+                android:src="@drawable/profile_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:text="@string/profile"
+            android:layout_width="61dp"
+            android:layout_height="35dp"
+            android:id="@+id/textView"
+            android:textSize="24sp"
+            android:textColor="@color/profile_text"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="61dp" />
 
-</FrameLayout>
+    <TextView
+            android:text="TextView"
+            android:layout_width="171dp"
+            android:layout_height="39dp"
+            android:id="@+id/nameProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="0.498"
+            android:gravity="center" />
+
+    <Button
+            android:text="@string/uploadPhoto"
+            android:layout_width="127dp"
+            android:layout_height="47dp"
+            android:id="@+id/button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cornerRadius="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/nameProfile"
+            android:backgroundTint="@color/background_Profile_button"
+            android:textColor="@color/profile_button_text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

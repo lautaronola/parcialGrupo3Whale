@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/profile_image"
+            android:title="@string/drawer_welcome" />
+    <item
+            android:id="@+id/nav_drawer_profile"
+            android:icon="@drawable/user_icon"
+            android:title="@string/profile" />
+    <item
+            android:id="@+id/nav_drawer_configuration"
+            android:icon="@drawable/config_icon"
+            android:title="@string/drawer_configuration" />
+</menu>

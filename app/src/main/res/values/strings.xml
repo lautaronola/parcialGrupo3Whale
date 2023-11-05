@@ -5,8 +5,8 @@
     <string name="profile">Perfil</string>
     <string name="uploadPhoto">Subir Foto</string>
 
-    <string name="img_welcome_fragment">Perro de bienvenida</string>
-    <string name="txtView_welcome_fragment">Bienvenido! Para continuar, por favor ingrese su nombre</string>
-    <string name="txtEdit_welcome_fragment">Ingrese su nombre</string>
-    <string name="btn_welcome_fragment">Ingresar</string>
+    <string name="img_welcome">Perro de bienvenida</string>
+    <string name="txtView_welcome">Bienvenido! Para continuar, por favor ingrese su nombre</string>
+    <string name="txtEdit_welcome">Ingrese su nombre</string>
+    <string name="btn_welcome">Ingresar</string>
 </resources>

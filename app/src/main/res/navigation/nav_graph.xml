@@ -3,12 +3,25 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/nav_graph.xml"
-        app:startDestination="@id/homeFragment">
+        app:startDestination="@id/welcomeFragment">
+    <fragment
+            android:id="@+id/welcomeFragment"
+            android:name="com.example.parcialgrupo3whale.fragments.WelcomeFragment"
+            android:label="fragment_welcome"
+            tools:layout="@layout/fragment_welcome" >
+            <action
+                    android:id="@+id/action_welcomeFragment_to_homeFragment"
+                    app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.parcialgrupo3whale.fragments.HomeFragment"
             android:label="fragment_home"
-            tools:layout="@layout/fragment_home" />
+            tools:layout="@layout/fragment_home" >
+        <argument
+                android:name="enteredName"
+                app:argType="string" />
+    </fragment>
     <fragment
             android:id="@+id/favouriteFragment"
             android:name="com.example.parcialgrupo3whale.fragments.FavouriteFragment"
@@ -24,4 +37,6 @@
             android:name="com.example.parcialgrupo3whale.fragments.AdoptionsFragment"
             android:label="fragment_adoptions"
             tools:layout="@layout/fragment_adoptions" />
+
+
 </navigation>

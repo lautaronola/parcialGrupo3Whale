@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.navigation.fragment.navArgs
 import com.example.parcialgrupo3whale.R
 
 class HomeFragment : Fragment() {
+    private lateinit var enteredName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val args: HomeFragmentArgs by navArgs()
+        enteredName = args.enteredName
     }
 
     override fun onCreateView(
@@ -18,6 +23,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val textView: TextView = view.findViewById(R.id.text1)
+        textView.text = "Hola, $enteredName"
+        return view
     }
 }

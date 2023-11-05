@@ -9,4 +9,6 @@
     <string name="txtView_welcome_fragment">Bienvenido! Para continuar, por favor ingrese su nombre</string>
     <string name="txtEdit_welcome_fragment">Ingrese su nombre</string>
     <string name="btn_welcome_fragment">Ingresar</string>
+    <string name="drawer_configuration">Configuración</string>
+    <string name="drawer_welcome">Hola</string>
 </resources>

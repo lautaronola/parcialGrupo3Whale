@@ -9,4 +9,6 @@
     <string name="txtView_welcome">Bienvenido! Para continuar, por favor ingrese su nombre</string>
     <string name="txtEdit_welcome">Ingrese su nombre</string>
     <string name="btn_welcome">Ingresar</string>
+    <string name="drawer_configuration">Configuración</string>
+    <string name="drawer_welcome">Hola</string>
 </resources>

@@ -21,4 +21,5 @@
     <!-- fragment_setting -->
     <string name="drawer_configuration">Configuración</string>
     <string name="drawer_welcome">Hola</string>
+    <string name="welcome_splash">Bienvenido! Cargando...</string>
 </resources>

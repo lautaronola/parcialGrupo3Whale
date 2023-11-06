@@ -18,6 +18,10 @@
     <string name="nav_adoptions">Adoptions</string>
     <string name="nav_adoption_form">Adoption Form</string>
 
+    <!-- Drawer Menu -->
+    <string name="nav_drawer_open">Abrir Menú</string>
+    <string name="nav_drawer_close">Cerrar Menú</string>
+
     <!-- fragment_setting -->
     <string name="drawer_configuration">Configuración</string>
     <string name="drawer_welcome">Hola</string>

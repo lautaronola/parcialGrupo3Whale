@@ -8,6 +8,7 @@ import com.example.parcialgrupo3whale.databinding.ActivityWelcomeBinding
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding : ActivityWelcomeBinding
     private var userName : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,6 +23,7 @@ class WelcomeActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun navigateToMainActivity() {
         val mainActivityIntent = Intent(this, MainActivity::class.java)
         startActivity(mainActivityIntent)

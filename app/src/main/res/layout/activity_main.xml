@@ -6,36 +6,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-    <!-- Contenido Principal -->
-    <FrameLayout
-            android:id="@+id/fragment_home"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
 
-    <fragment
-            android:id="@+id/navHostFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            />
+            <!-- Toolbar -->
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    />
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- BottomNavigationView -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/btmNavViewMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:menu="@menu/btm_nav_menu" />
+        <!-- Contenido Principal -->
+        <FrameLayout
+                android:id="@+id/fragment_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            <fragment
+                    android:id="@+id/navHostFragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/nav_graph" />
+        </FrameLayout>
+
+        <!-- BottomNavigationView -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/btmNavViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:menu="@menu/btm_nav_menu" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Cajón de Navegación -->
     <com.google.android.material.navigation.NavigationView

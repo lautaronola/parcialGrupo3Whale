@@ -35,5 +35,6 @@
     <string name="drawer_configuration">Configuración</string>
     <string name="drawer_welcome">Hola</string>
     <string name="welcome_splash">Bienvenido! Cargando...</string>
+    <string name="help_text">Ingrese la información de la mascota para crear la publicación de adopción.</string>
 
 </resources>

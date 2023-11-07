@@ -8,6 +8,22 @@
         android:gravity="center_horizontal"
         android:padding="@dimen/common_padding_default"
         tools:context=".fragments.AdoptionFormFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_publication"
+            android:layout_gravity="center_horizontal">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "@string/help_text"
+            android:textAlignment="center">
+    </com.google.android.material.textview.MaterialTextView>
     
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLayoutNamePet"
@@ -93,23 +109,26 @@
             android:orientation="horizontal">
 
       <com.google.android.material.radiobutton.MaterialRadioButton
-          android:id="@+id/radioButtonFemale"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/female"
-          android:checked="true"/>
+              android:id="@+id/radioButtonFemale"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/common_padding_default"
+              android:layout_marginEnd="@dimen/common_padding_min"
+              android:text="Hembra"
+              android:checked="true"/>
 
       <com.google.android.material.radiobutton.MaterialRadioButton
-          android:id="@+id/radioButtonMale"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/male"/>
+              android:id="@+id/radioButtonMale"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/common_padding_default"
+              android:text="@string/male"/>
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/common_padding_default"
+            android:layout_margin="@dimen/common_padding_min"
             android:hint="@string/select_location"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
             <AutoCompleteTextView
@@ -120,8 +139,6 @@
         
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
     <com.google.android.material.button.MaterialButton
             android:id="@+id/BtnAdoptionAdd"
             android:layout_width="wrap_content"
@@ -131,6 +148,14 @@
             app:icon="@drawable/ic_post_adoption_add"
             android:gravity="end" >
     </com.google.android.material.button.MaterialButton>
+
+    <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_padding_min"
+        >
+
+    </ProgressBar>
         
 
 

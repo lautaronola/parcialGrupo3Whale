@@ -26,6 +26,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun navigateToMainActivity() {
         val mainActivityIntent = Intent(this, MainActivity::class.java)
+        mainActivityIntent.putExtra("userName", userName)
         startActivity(mainActivityIntent)
         finish()
     }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.example.parcialgrupo3whale.R
 
 class ProfileFragment : Fragment() {
@@ -16,7 +17,12 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val argumentValue = arguments?.getString("userName")
+        val textView: TextView = view.findViewById(R.id.nameProfile)
+
+        textView.text = argumentValue
+
+        return view
     }
 }

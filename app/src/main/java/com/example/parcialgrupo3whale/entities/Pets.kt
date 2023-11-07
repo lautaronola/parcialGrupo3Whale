@@ -2,7 +2,7 @@ package com.example.parcialgrupo3whale.entities
 private class Pets {
     private val namePet: String;
     private val agePet: String ;
-    private val weightPet: float;
+    private val weightPet: Float;
     private val descriptionPet: String;
     private val genres: String;
     private val location: String;
@@ -10,8 +10,8 @@ private class Pets {
     private val race: String;
     private val subrace: String;
 
-    constructor(namePet:String,agePet:String,weightPet:float,descriptionPet:float,
-                genres:float,location:String,owner:String,race:String,subrace:String){
+    constructor(namePet:String,agePet:String,weightPet:Float,descriptionPet:String,
+                genres:String,location:String,owner:String,race:String,subrace:String){
         this.namePet = namePet;
         this.agePet= agePet;
         this.weightPet = weightPet;

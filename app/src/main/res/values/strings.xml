@@ -1,13 +1,39 @@
 <resources>
     <string name="app_name">ParcialGrupo3Whale</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hint_WeightPet">Peso</string>
     <string name="hint_DescriptionPet">Descripción</string>
     <string name="hint_namePet">Nombre de mascota</string>
     <string name="hint_age">Edad</string>
-    <string name="addAdoptionPet">"Publicar adopción "</string>
+    <string name="addAdoptionPet">Publicar adopción</string>
     <string name="select_location">Ubicación</string>
     <string name="location_label">Location</string>
     <string name="male">Macho</string>
     <string name="female">Hembra</string>
+
+    <!-- fragment_profile -->
+    <string name="profile">Perfil</string>
+    <string name="uploadPhoto">Subir Foto</string>
+
+    <!-- activity_welcome -->
+    <string name="img_welcome">Perro de bienvenida</string>
+    <string name="txtView_welcome">Bienvenido! Para continuar, por favor ingrese su nombre</string>
+    <string name="txtEdit_welcome">Ingrese su nombre</string>
+    <string name="btn_welcome">Ingresar</string>
+
+    <!-- activity_main -->
+    <string name="nav_home">Home</string>
+    <string name="nav_favourite">Favourites</string>
+    <string name="nav_adoptions">Adoptions</string>
+    <string name="nav_adoption_form">Adoption Form</string>
+
+    <!-- Drawer Menu -->
+    <string name="nav_drawer_open">Abrir Menú</string>
+    <string name="nav_drawer_close">Cerrar Menú</string>
+
+    <!-- fragment_setting -->
+    <string name="drawer_configuration">Configuración</string>
+    <string name="drawer_welcome">Hola</string>
+    <string name="welcome_splash">Bienvenido! Cargando...</string>
+
 </resources>

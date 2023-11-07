@@ -26,10 +26,10 @@ class AdoptionFormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setDataAdopcionPet()
+        setDataAdoptionPet()
     }
 
-    private fun setDataAdopcionPet() {
-        binding
+    private fun setDataAdoptionPet() {
+        //binding
     }
 }

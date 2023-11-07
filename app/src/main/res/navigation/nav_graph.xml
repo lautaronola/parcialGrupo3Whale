@@ -4,13 +4,33 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/nav_graph.xml"
         app:startDestination="@id/homeFragment">
+    <!-- actions drawer menu -->
+    <action
+            android:id="@+id/action_global_nav_drawer_profile"
+            app:destination="@id/nav_drawer_profile"
+            app:launchSingleTop="true" />
+
+    <action
+            android:id="@+id/action_global_nav_drawer_configuration"
+            app:destination="@id/nav_drawer_configuration"
+            app:launchSingleTop="true" />
+
+    <!-- fragments drawer menu -->
+    <fragment
+            android:id="@+id/nav_drawer_profile"
+            android:name="com.example.parcialgrupo3whale.fragments.ProfileFragment" >
+        <argument android:name="userName" app:argType="string" app:nullable="true"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_drawer_configuration"
+            android:name="com.example.parcialgrupo3whale.fragments.SettingFragment" />
 
     <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.parcialgrupo3whale.fragments.HomeFragment"
             android:label="fragment_home"
-            tools:layout="@layout/fragment_home" >
-    </fragment>
+            tools:layout="@layout/fragment_home" />
     <fragment
             android:id="@+id/favouriteFragment"
             android:name="com.example.parcialgrupo3whale.fragments.FavouriteFragment"

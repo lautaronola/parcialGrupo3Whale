@@ -44,7 +44,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_padding_default">
+            android:layout_marginTop="@dimen/padding_medium">
        <com.google.android.material.textfield.TextInputLayout
                android:id="@+id/textLayoutAgePet"
                android:layout_width="0dp"
@@ -90,7 +90,7 @@
               android:id="@+id/textLayoutDescriptionPet"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/common_padding_default"
+              android:layout_marginTop="@dimen/padding_medium"
               android:hint="@string/hint_DescriptionPet"
               app:endIconMode="clear_text"
               style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
@@ -112,7 +112,7 @@
               android:id="@+id/radioButtonFemale"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/common_padding_default"
+              android:layout_marginTop="@dimen/padding_medium"
               android:layout_marginEnd="@dimen/common_padding_min"
               android:text="Hembra"
               android:checked="true"/>
@@ -121,7 +121,7 @@
               android:id="@+id/radioButtonMale"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/common_padding_default"
+              android:layout_marginTop="@dimen/padding_medium"
               android:text="@string/male"/>
     </RadioGroup>
 
@@ -136,14 +136,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none" />
-        
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_padding_min"
+            android:hint="@string/hint_race"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            >
+        <AutoCompleteTextView
+                android:id="@+id/autocompleteRace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_padding_min"
+            android:hint="@string/hint_subraza"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <AutoCompleteTextView
+                android:id="@+id/autocompleteSubrace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/BtnAdoptionAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_padding_default"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:background="@color/background_Profile_button"
             android:text="@string/addAdoptionPet"
             app:icon="@drawable/ic_post_adoption_add"
             android:gravity="end" >
@@ -152,9 +179,7 @@
     <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_padding_min"
-        >
-
+            android:layout_marginTop="@dimen/common_padding_min">
     </ProgressBar>
         
 

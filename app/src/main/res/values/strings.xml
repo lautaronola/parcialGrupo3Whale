@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">ParcialGrupo3Whale</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="hint_WeightPet">Peso</string>
+    <string name="hint_DescriptionPet">Descripción</string>
+    <string name="hint_namePet">Nombre de mascota</string>
+    <string name="hint_age">Edad</string>
+    <string name="addAdoptionPet">Publicar adopción</string>
+    <string name="select_location">Ubicación</string>
+    <string name="location_label">Location</string>
+    <string name="male">Macho</string>
+    <string name="female">Hembra</string>
 
     <!-- fragment_profile -->
     <string name="profile">Perfil</string>
@@ -26,4 +35,5 @@
     <string name="drawer_configuration">Configuración</string>
     <string name="drawer_welcome">Hola</string>
     <string name="welcome_splash">Bienvenido! Cargando...</string>
+
 </resources>

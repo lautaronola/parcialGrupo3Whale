@@ -2,7 +2,6 @@ package com.example.parcialgrupo3whale.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar

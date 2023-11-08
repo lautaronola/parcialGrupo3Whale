@@ -1,13 +1,7 @@
 package com.example.parcialgrupo3whale.activities
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -28,10 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var btmNavView: BottomNavigationView
     private lateinit var navController: NavController
-
     private var userName : String? = null
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +31,6 @@ class MainActivity : AppCompatActivity() {
         userName = intent.getStringExtra("userName")
         setUpToolbar()
         setUpNavigation()
-
-
     }
 
     private fun setUpToolbar() {
@@ -145,13 +134,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-    }
-
-
-    fun realizarLlamada(view: View) {
-        val numeroTelefono = "123456789" // Reemplaza esto con el número de teléfono al que deseas llamar
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$numeroTelefono"))
-        startActivity(intent)
     }
 }

@@ -28,7 +28,7 @@
         <FrameLayout
                 android:id="@+id/fragment_home"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" >
 
         </FrameLayout>
 
@@ -43,10 +43,10 @@
                 android:id="@+id/navHostFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="639dp"
+                android:layout_height="604dp"
                 app:defaultNavHost="true"
-                app:navGraph="@navigation/nav_graph"
-                app:layout_anchorGravity="center" app:layout_anchor="@+id/fragment_home"/>
+                app:navGraph="@navigation/nav_graph" app:layout_anchorGravity="center"
+                app:layout_anchor="@+id/fragment_home"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

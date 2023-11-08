@@ -58,7 +58,6 @@
         <argument
                 android:name="petEntity"
                 app:argType="com.example.parcialgrupo3whale.entities.PetEntity"
-                android:defaultValue="@null"
                 app:nullable="true"/>
     </fragment>
 

@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // lo llamamos desde setting fr y profile fr, ahi no vemos el navbar
+    // lo llamamos desde setting fr y profile fr, para manejar visibilidad del navbar
     fun setBottomNavViewVisibility(visibility: Int) {
         if (btmNavView != null) {
             btmNavView.setVisibility(visibility)

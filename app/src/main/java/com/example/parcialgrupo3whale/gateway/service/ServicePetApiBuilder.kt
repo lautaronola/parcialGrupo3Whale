@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServicePetApiBuilder {
 
-    private val BASE_URL = "https://dog.ceo/"
+    private const val BASE_URL = "https://dog.ceo/"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

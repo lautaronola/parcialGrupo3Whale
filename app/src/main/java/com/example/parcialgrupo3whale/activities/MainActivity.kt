@@ -28,13 +28,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var btmNavView: BottomNavigationView
     private lateinit var navController: NavController
-    private lateinit var button: Button
-    private lateinit var imageView: ImageView
+
     private var userName : String? = null
 
-    companion object{
-        val IMAGE_REQUEST_CODE = 100
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +41,7 @@ class MainActivity : AppCompatActivity() {
         setUpToolbar()
         setUpNavigation()
 
-        button = findViewById(R.id.upload_photo)
-        imageView = findViewById(R.id.profile_image)
 
-        button.setOnClickListener{
-            pickImageGallery()
-        }
     }
 
     private fun setUpToolbar() {
@@ -155,18 +147,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun pickImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_REQUEST_CODE)
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-            imageView.setImageURI(data?.data)
-        }
-    }
 
     fun realizarLlamada(view: View) {
         val numeroTelefono = "123456789" // Reemplaza esto con el número de teléfono al que deseas llamar

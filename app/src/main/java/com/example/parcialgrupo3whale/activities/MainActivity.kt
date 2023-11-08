@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btmNavView: BottomNavigationView
     private lateinit var navController: NavController
     private var userName : String? = null
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

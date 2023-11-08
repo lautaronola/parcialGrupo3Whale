@@ -1,17 +1,21 @@
 package com.example.parcialgrupo3whale.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.adapters.PetsListAdapter
 import com.example.parcialgrupo3whale.entities.PetEntity
+import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
+import com.google.android.material.snackbar.Snackbar
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var view : View
     private lateinit var recyclerPets : RecyclerView
 
@@ -29,7 +33,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false)
-
+        recyclerPets = view.findViewById(R.id.recyclerPets)
         return view
     }
 
@@ -50,7 +54,17 @@ class HomeFragment : Fragment() {
         recyclerPets.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
         petsListAdapter = PetsListAdapter(pets, this)
+        recyclerPets.layoutManager = linearLayoutManager
+        recyclerPets.adapter = petsListAdapter
 
     }
+
+   override fun onViewItemDetail(pet: PetEntity){
+      val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(pet)
+       this.findNavController().navigate(action)
+       Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
+   }
+
+
 
 }

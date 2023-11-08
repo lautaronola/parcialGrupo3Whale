@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="GeneralesTitle">
+        <item name="android:textColor">#1B72C0</item>
+    </style>
+
+</resources>

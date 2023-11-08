@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+            app:title="Configuración"
+            app:key="back_key"
+            app:icon="@drawable/arrow_back"/>
+
+    <PreferenceCategory
+            app:title="Generales"
+            app:layout="@style/GeneralesTitle" />
+
+    <!-- Agrega una Preferencia Switch para el Modo Oscuro -->
+    <SwitchPreferenceCompat
+            app:key="dark_mode"
+            app:summaryOff="Activar el modo oscuro"
+            app:summaryOn="Apagar el modo oscuro"
+            app:title="Modo Oscuro" />
+
+</PreferenceScreen>

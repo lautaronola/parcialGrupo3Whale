@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -111,11 +112,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_drawer_profile -> {
                     navController.navigate(R.id.nav_drawer_profile, bundle)
                     drawerLayout.closeDrawers() // Cierra el DrawerLayout después de seleccionar el ítem
-                    true
+                    setToolbarTitle("Profile")
                 }
                 R.id.nav_drawer_configuration -> {
-                    btmNavView.visibility = View.GONE
                     navController.navigate(R.id.action_global_nav_drawer_configuration)
+                    setToolbarTitle("Configuration")
                 }
                 else -> {
                     supportActionBar?.show()
@@ -152,15 +153,19 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment -> {
                     btmNavView.menu.findItem(R.id.nav_home).isChecked = true
+                    setToolbarTitle("Home")
                 }
                 R.id.favouriteFragment -> {
                     btmNavView.menu.findItem(R.id.nav_favourites).isChecked = true
+                    setToolbarTitle("Favourite")
                 }
                 R.id.adoptionFormFragment -> {
                     btmNavView.menu.findItem(R.id.nav_adoptions).isChecked = true
+                    setToolbarTitle("Adoption Form")
                 }
                 R.id.adoptionsFragment -> {
                     btmNavView.menu.findItem(R.id.nav_adoption_form).isChecked = true
+                    setToolbarTitle("Adoptions")
                 }
             }
         }
@@ -209,4 +214,9 @@ class MainActivity : AppCompatActivity() {
 
         petDao?.insertAllPets(initialPets)
     }
+
+    fun setToolbarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
 }

@@ -59,10 +59,8 @@ class DetailFragment : Fragment() {
                 }
             }
     }
-    fun realizarLlamada(view: View) {
-        val numeroTelefono = "123456789" // Reemplaza esto con el número de teléfono al que deseas llamar
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$numeroTelefono"))
-        startActivity(intent)
-    }
+
+
+
 
 }

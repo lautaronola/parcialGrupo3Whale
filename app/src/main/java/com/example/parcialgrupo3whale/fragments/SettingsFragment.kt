@@ -1,6 +1,7 @@
 package com.example.parcialgrupo3whale.fragments
 
 import android.os.Bundle
+import androidx.preference.PreferenceFragmentCompat
 import android.view.View
 import android.content.Context
 import com.example.parcialgrupo3whale.R
@@ -8,13 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.example.parcialgrupo3whale.activities.MainActivity
+class SettingsFragment : PreferenceFragmentCompat() {
 
-class SettingFragment : PreferenceFragmentCompat() {
-
-    // Inflo el diseño de preferencias con root_pref..
+    //     Inflo el diseño de preferencias con root_pref..
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }

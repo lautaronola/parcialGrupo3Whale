@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-
+    // Preference
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("androidx.preference:preference:1.2.1")
     val navVersion = "2.7.5"

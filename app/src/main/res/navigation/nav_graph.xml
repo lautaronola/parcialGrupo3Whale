@@ -10,10 +10,10 @@
             app:destination="@id/nav_drawer_profile"
             app:launchSingleTop="true" />
 
-    <action
-            android:id="@+id/action_global_nav_drawer_configuration"
-            app:destination="@id/nav_drawer_configuration"
-            app:launchSingleTop="true" />
+        <action
+                android:id="@+id/action_global_nav_drawer_configuration"
+                app:destination="@id/nav_drawer_configuration"
+                app:launchSingleTop="true" />
 
     <!-- fragments drawer menu -->
     <fragment
@@ -24,7 +24,11 @@
 
     <fragment
             android:id="@+id/nav_drawer_configuration"
-            android:name="com.example.parcialgrupo3whale.fragments.SettingFragment" />
+            android:name="com.example.parcialgrupo3whale.fragments.SettingsFragment" />
+
+<!--    <fragment-->
+<!--            android:id="@+id/nav_drawer_configuration"-->
+<!--            android:name="com.example.parcialgrupo3whale.configuracion2" />-->
 
     <fragment
             android:id="@+id/homeFragment"
@@ -60,6 +64,5 @@
                 app:argType="com.example.parcialgrupo3whale.entities.PetEntity"
                 app:nullable="true"/>
     </fragment>
-
 
 </navigation>

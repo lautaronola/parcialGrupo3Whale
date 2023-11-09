@@ -50,7 +50,7 @@ android {
 
 dependencies {
     val navVersion = "2.5.3"
-    val roomVersion = "2.5.0"
+    val roomVersion = "2.4.0"
 
     implementation("androidx.databinding:adapters:3.2.0-alpha11")
     implementation("androidx.core:core-ktx:1.9.0")

@@ -8,14 +8,14 @@ import com.example.parcialgrupo3whale.enums.Location
 data class PetEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val petName: String,
-    val petAge: String,
-    val petWeigh: String,
-    val petDescription: String,
+    val petName: String?,
+    val petAge: String?,
+    val petWeigh: String?,
+    val petDescription: String?,
     val gender: Boolean,
     val location: Location,
-    val owner: String,
-    val images: String,
-    val breeds: String,
-    val subBreeds: String
+    val owner: String?,
+    val images: String?,
+    val breeds: String?,
+    val subBreeds: String?
 )

@@ -9,7 +9,6 @@ import androidx.room.TypeConverters
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 
 @Database(entities = [PetEntity::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
 abstract class WhaleDatabase : RoomDatabase() {
     abstract fun petDao(): PetDao
 

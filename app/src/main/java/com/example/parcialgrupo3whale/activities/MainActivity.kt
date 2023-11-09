@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.openDrawer(GravityCompat.START) // Abre el DrawerLayout al tocar el botón de hamburguesa
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }

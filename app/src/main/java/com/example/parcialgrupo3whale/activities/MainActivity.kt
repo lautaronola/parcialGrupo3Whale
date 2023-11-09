@@ -106,18 +106,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_drawer_profile -> {
                     val bundle = Bundle()
                     bundle.putString("userName", userName)
-                    navController.navigate(R.id.nav_drawer_profile, bundle)
-                    drawerLayout.closeDrawers() // Cierra el DrawerLayout después de seleccionar el ítem
-                    true
+                    navController.navigate(R.id.action_global_nav_drawer_profile, bundle)
                 }
                 R.id.nav_drawer_configuration -> {
-                    navController.navigate(R.id.nav_drawer_configuration)
-                    drawerLayout.closeDrawers()
-                    true
+                    navController.navigate(R.id.action_global_nav_drawer_configuration)
                 }
                 else -> false
             }
+            drawerLayout.closeDrawers()  // Cierra el DrawerLayout después de seleccionar el ítem
+            true
         }
+
         btmNavView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {

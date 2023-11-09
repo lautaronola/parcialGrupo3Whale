@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 
@@ -29,7 +30,13 @@ class PetHolder (view: View) : RecyclerView.ViewHolder(view){
 
         Glide.with(view.context)
             .load(pet.images)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
             .into(petImageView)
+
+       /* Glide.with(view.context)
+            .load(pet.images)
+            .into(petImageView)*/
     }
 
     fun getCardLayout() : CardView {

@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-    val navVersion = "2.5.3"
+    val navVersion = "2.7.5"
     val roomVersion = "2.4.0"
 
     implementation("androidx.databinding:adapters:3.2.0-alpha11")
@@ -83,4 +83,8 @@ dependencies {
     implementation ("androidx.room:room-ktx:$roomVersion")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     kapt("androidx.room:room-compiler:$roomVersion")
+
+    // Preference
+    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation("androidx.preference:preference:1.2.1")
 }

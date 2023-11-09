@@ -1,0 +1,17 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Preference
+            app:title="@string/config_tittle"
+            app:titleTextAppearance="@style/config_title"
+            app:key="back_key"
+            app:icon="@drawable/arrow_back"/>
+
+    <PreferenceCategory
+            app:title="@string/config_general"
+            app:titleTextAppearance="@style/config_general_title">
+
+        <SwitchPreferenceCompat
+                app:key="dark_mode"
+                app:title="Modo Oscuro"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

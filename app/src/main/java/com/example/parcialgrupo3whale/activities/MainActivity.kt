@@ -32,10 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ParcialGrupo3Whale.database = Room.databaseBuilder(
-            applicationContext,
-            WhaleDatabase::class.java, "whale-database"
-        ).build()
+        val db = WhaleDatabase.getWhaleDatabase(this)
 
         userName = intent.getStringExtra("userName")
         setUpToolbar()

@@ -17,6 +17,5 @@ data class PetEntity(
     val owner: String = "",
     val images: String = "",
     val breed: String = "",
-    val subBreed: String = "",
-    val isFavourite: Boolean = false
+    val subBreed: String = ""
 )

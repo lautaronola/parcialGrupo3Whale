@@ -14,9 +14,9 @@ import com.example.parcialgrupo3whale.activities.MainActivity
 
 class SettingFragment : PreferenceFragmentCompat() {
 
-    // Inflo el diseño de preferencias con config_pref..
+    // Inflo el diseño de preferencias con root_pref..
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.config_preferences, rootKey)
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }
 
     // ocultamos el actionBar al mostrar el fr

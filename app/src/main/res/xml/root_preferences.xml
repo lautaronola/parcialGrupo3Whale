@@ -9,7 +9,6 @@
             app:title="Generales"
             app:layout="@style/GeneralesTitle" />
 
-    <!-- Agrega una Preferencia Switch para el Modo Oscuro -->
     <SwitchPreferenceCompat
             app:key="dark_mode"
             app:summaryOff="Activar el modo oscuro"

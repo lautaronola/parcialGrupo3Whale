@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcialgrupo3whale.R
-import com.example.parcialgrupo3whale.activities.MainActivity
 import com.example.parcialgrupo3whale.adapters.PetsListHomeAdapter
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
@@ -34,7 +33,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerPets = view.findViewById(R.id.recyclerPets)
-        (activity as MainActivity).setToolbarTitle("Nuevo Título")
         return view
     }
 

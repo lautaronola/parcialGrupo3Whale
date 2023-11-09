@@ -1,187 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="@dimen/common_padding_default"
-        tools:context=".fragments.AdoptionFormFragment">
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="10dp"
+        android:scrollbars="vertical"
+        tools:context=".activities.MainActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_publication"
-            android:layout_gravity="center_horizontal">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/common_padding_default"
+            tools:context=".fragments.AdoptionFormFragment">
 
-    </com.google.android.material.imageview.ShapeableImageView>
 
-    <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewHelp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text= "@string/help_text"
-            android:textAlignment="center">
-    </com.google.android.material.textview.MaterialTextView>
-    
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textLayoutNamePet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_namePet"
-            app:endIconMode="clear_text"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-    <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textEditNamePet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             android:inputType="text"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@id/textEditAgePet"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/image_publication"
+                android:layout_gravity="center_horizontal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_medium">
-       <com.google.android.material.textfield.TextInputLayout
-               android:id="@+id/textLayoutAgePet"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:hint="@string/hint_age"
-               android:layout_marginEnd="@dimen/common_padding_min"
-               app:endIconMode="clear_text"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintEnd_toStartOf="@+id/textLayoutWeighPet"
-               app:layout_constraintTop_toTopOf="parent"
-               style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-           <com.google.android.material.textfield.TextInputEditText
-                   android:id="@+id/textEditAgePet"
-                   android:layout_width="match_parent"
+        </com.google.android.material.imageview.ShapeableImageView>
+
+        <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "@string/help_text"
+                android:textAlignment="center">
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutNamePet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_namePet"
+                app:endIconMode="clear_text"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textEditNamePet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:inputType="text"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@id/textEditAgePet"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium">
+           <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/textLayoutAgePet"
+                   android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:inputType="number"
-                   android:imeOptions="actionNext"
-                   android:nextFocusForward="@id/textEditWeighPet"/>
-       </com.google.android.material.textfield.TextInputLayout>
+                   android:hint="@string/hint_age"
+                   android:layout_marginEnd="@dimen/common_padding_min"
+                   app:endIconMode="clear_text"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/textLayoutWeighPet"
+                   app:layout_constraintTop_toTopOf="parent"
+                   style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+               <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/textEditAgePet"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:inputType="number"
+                       android:imeOptions="actionNext"
+                       android:nextFocusForward="@id/textEditWeighPet"/>
+           </com.google.android.material.textfield.TextInputLayout>
 
-       <com.google.android.material.textfield.TextInputLayout
-               android:id="@+id/textLayoutWeighPet"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:hint="@string/hint_WeighPet"
-               android:layout_marginStart="@dimen/common_padding_min"
-               app:endIconMode="clear_text"
-               app:layout_constraintStart_toEndOf="@+id/textLayoutAgePet"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-           <com.google.android.material.textfield.TextInputEditText
-                   android:id="@+id/textEditWeighPet"
-                   android:layout_width="match_parent"
+           <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/textLayoutWeighPet"
+                   android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:inputType="numberDecimal"
-                   android:imeOptions="actionNext"
-                   android:nextFocusForward="@id/textEditDescriptionPet"/>
-       </com.google.android.material.textfield.TextInputLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                   android:hint="@string/hint_WeighPet"
+                   android:layout_marginStart="@dimen/common_padding_min"
+                   app:endIconMode="clear_text"
+                   app:layout_constraintStart_toEndOf="@+id/textLayoutAgePet"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+               <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/textEditWeighPet"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:inputType="numberDecimal"
+                       android:imeOptions="actionNext"
+                       android:nextFocusForward="@id/textEditDescriptionPet"/>
+           </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-      <com.google.android.material.textfield.TextInputLayout
-              android:id="@+id/textLayoutDescriptionPet"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/padding_medium"
-              android:hint="@string/hint_DescriptionPet"
-              app:endIconMode="clear_text"
-              style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-          <com.google.android.material.textfield.TextInputEditText
-                  android:id="@+id/textEditDescriptionPet"
+          <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/textLayoutDescriptionPet"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:inputType="text"
-                  android:imeOptions="actionDone"/>
-      </com.google.android.material.textfield.TextInputLayout>
+                  android:layout_marginTop="@dimen/padding_medium"
+                  android:hint="@string/hint_DescriptionPet"
+                  app:endIconMode="clear_text"
+                  style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+              <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/textEditDescriptionPet"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="text"
+                      android:imeOptions="actionDone"/>
+          </com.google.android.material.textfield.TextInputLayout>
 
-    <RadioGroup
-            android:id="@+id/radioGroupGenres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <RadioGroup
+                android:id="@+id/radioGroupGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-      <com.google.android.material.radiobutton.MaterialRadioButton
-              android:id="@+id/radioButtonFemale"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/padding_medium"
-              android:layout_marginEnd="@dimen/common_padding_min"
-              android:text="Hembra"
-              android:checked="true"/>
+          <com.google.android.material.radiobutton.MaterialRadioButton
+                  android:id="@+id/radioButtonFemale"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/padding_medium"
+                  android:layout_marginEnd="@dimen/common_padding_min"
+                  android:text="Hembra"
+                  android:checked="true"/>
 
-      <com.google.android.material.radiobutton.MaterialRadioButton
-              android:id="@+id/radioButtonMale"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/padding_medium"
-              android:text="@string/male"/>
-    </RadioGroup>
+          <com.google.android.material.radiobutton.MaterialRadioButton
+                  android:id="@+id/radioButtonMale"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/padding_medium"
+                  android:text="@string/male"/>
+        </RadioGroup>
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/common_padding_min"
-            android:hint="@string/select_location"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-            <AutoCompleteTextView
-                android:id="@+id/autocompleteLocation"
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutLocationPet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/select_location"
+                app:endIconMode="clear_text"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textEditLocationPet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/common_padding_min"
-            android:hint="@string/hint_breed"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            >
-        <AutoCompleteTextView
-                android:id="@+id/autocompleteBreed"
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutBreedPet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"/>
-    </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/hint_breed"
+                app:endIconMode="clear_text"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textEditBreedPet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/common_padding_min"
-            android:hint="@string/hint_subBreed"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <AutoCompleteTextView
-                android:id="@+id/autocompleteSubBreed"
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutSubBreedPet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"/>
-    </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/hint_subBreed"
+                app:endIconMode="clear_text"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textEditSubBreedPet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/BtnAdoptionAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_medium"
-            android:background="@color/background_Profile_button"
-            android:text="@string/addAdoptionPet"
-            app:icon="@drawable/ic_post_adoption_add"
-            android:gravity="end" >
-    </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/BtnAdoptionAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:background="@color/background_Profile_button"
+                android:text="@string/addAdoptionPet"
+                app:icon="@drawable/ic_post_adoption_add"
+                android:gravity="end" >
+        </com.google.android.material.button.MaterialButton>
 
-    <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_padding_min">
-    </ProgressBar>
-        
-
-
-</LinearLayout>
+        <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_padding_min">
+        </ProgressBar>
+    </LinearLayout>
+</ScrollView>

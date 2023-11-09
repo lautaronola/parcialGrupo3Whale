@@ -24,9 +24,10 @@ class AdoptionFormFragment : Fragment() {
     private lateinit var weighEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var genderRadioGroup: RadioGroup
-    private lateinit var locationAutoCompleteTextView: AutoCompleteTextView
-    private lateinit var breedAutoCompleteTextView: AutoCompleteTextView
-    private lateinit var subBreedAutoCompleteTextView: AutoCompleteTextView
+    private lateinit var locationEditText: EditText
+    private lateinit var breedEditText: EditText
+    private lateinit var subBreedEditText: EditText
+//    private lateinit var locationAutoCompleteTextView: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +45,11 @@ class AdoptionFormFragment : Fragment() {
         weighEditText = view.findViewById(R.id.textEditWeighPet)
         descriptionEditText = view.findViewById(R.id.textEditDescriptionPet)
         genderRadioGroup = view.findViewById(R.id.radioGroupGenres)
-        locationAutoCompleteTextView = view.findViewById(R.id.autocompleteLocation)
-        breedAutoCompleteTextView = view.findViewById(R.id.autocompleteBreed)
-        subBreedAutoCompleteTextView = view.findViewById(R.id.autocompleteSubBreed)
+        locationEditText = view.findViewById(R.id.textEditLocationPet)
+        breedEditText = view.findViewById(R.id.textEditBreedPet)
+        subBreedEditText = view.findViewById(R.id.textEditSubBreedPet)
         addButton = view.findViewById(R.id.BtnAdoptionAdd)
+//        locationAutoCompleteTextView = view.findViewById(R.id.autocompleteLocation)
 
         // Set up click listener for the add button
         addButton.setOnClickListener {
@@ -57,12 +59,12 @@ class AdoptionFormFragment : Fragment() {
             val description = descriptionEditText.text.toString()
             val selectedRadioButtonId = genderRadioGroup.checkedRadioButtonId
             val gender: Boolean = selectedRadioButtonId == R.id.radioButtonFemale
-            val location = locationAutoCompleteTextView.text.toString()
-            val breed = breedAutoCompleteTextView.text.toString()
-            val subBreed = subBreedAutoCompleteTextView.text.toString()
+//            val locationEnum = locationAutoCompleteTextView.text.toString()
+            val breed = breedEditText.text.toString()
+            val subBreed = subBreedEditText.text.toString()
             val owner = arguments?.getString("userName").toString()
 
-            if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || location.isNullOrEmpty() || breed.isNullOrEmpty() || subBreed.isNullOrEmpty() || owner.isNullOrEmpty()) {
+            if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || subBreed.isNullOrEmpty() || owner.isNullOrEmpty()) {
                 Toast.makeText(context, "Formulario Incompleto! Faltan campos", Toast.LENGTH_SHORT).show()
             } else {
             // Crear una instancia de PetEntity
@@ -73,7 +75,7 @@ class AdoptionFormFragment : Fragment() {
                 petWeigh = weigh,
                 petDescription = description,
                 gender = gender,
-                location = Location.valueOf(location),
+                location = Location.BUENOS_AIRES, // Location hardcodeada. Esperaba location = Location.valueOf(locationEnum),
                 owner = owner,
                 breed = breed,
                 subBreed = subBreed
@@ -89,14 +91,4 @@ class AdoptionFormFragment : Fragment() {
         }
         return view
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        setDataAdoptionPet()
-//    }
-//
-//    private fun setDataAdoptionPet() {
-//        //binding
-//    }
 }

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcialgrupo3whale.R
-import com.example.parcialgrupo3whale.database.dao.PetFavDao
+import com.example.parcialgrupo3whale.database.dao.PetDao
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.gateway.service.PetAPIService
@@ -17,10 +17,10 @@ class PetsListFavAdapter(
     private val onItemClickListener: OnDetailFragmentClickListener,
     private val db: WhaleDatabase?
 ) : RecyclerView.Adapter<PetHolder>(){
-    private var petDao: PetFavDao? = null
+    private var petDao: PetDao? = null
     private var petApiService : PetAPIService
     init {
-        petDao = db?.petFavDao()
+        petDao = db?.petDao()
         petApiService = ServicePetApiBuilder.create()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetHolder {

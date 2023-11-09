@@ -46,7 +46,7 @@ class FavouriteFragment : Fragment(), OnDetailFragmentClickListener {
 
         val db = WhaleDatabase.getWhaleDatabase(requireContext())
         if (db != null) {
-            pets = db.petFavDao().getAllPets()
+            pets = db.petDao().getAllFavoritePets()
         }
 
         petsListFavAdapter = PetsListFavAdapter(pets, this, db)

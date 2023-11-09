@@ -25,6 +25,9 @@ interface PetDao {
     @Query("SELECT * FROM pets")
     fun getAllPets(): List<PetEntity>
 
+    @Query("SELECT * FROM pets WHERE is_favorite = 1")
+    fun getAllFavoritePets(): List<PetEntity>
+
     @Query("SELECT * FROM pets WHERE id = :id")
     fun loadPetById(id: Int): PetEntity
 }

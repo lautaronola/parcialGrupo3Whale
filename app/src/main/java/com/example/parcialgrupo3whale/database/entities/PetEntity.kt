@@ -30,7 +30,7 @@ data class PetEntity(
     parcel.readInt(),
     parcel.readString() ?: "",
     parcel.readString() ?: "",
-    parcel.readString() ?: "",s
+    parcel.readString() ?: "",
     parcel.readString() ?: "",
     parcel.readByte() != 0.toByte(),
     Location.valueOf(parcel.readString() ?: ""),

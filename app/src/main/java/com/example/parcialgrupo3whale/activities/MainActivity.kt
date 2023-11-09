@@ -196,7 +196,6 @@ class MainActivity : AppCompatActivity() {
     private fun populateDatabase() {
         var initialPets = ArrayList<PetEntity>()
 
-
         initialPets.add(PetEntity(1, "Luna", "10", "15", "", false, Location.CABA, "Lautaro", getRandomImageUrl(), "calle", ""))
         initialPets.add(PetEntity(2, "Tatu", "12", "20", "", true, Location.CABA, "Mateo", getRandomImageUrl(), "pitbull", ""))
         initialPets.add(PetEntity(3, "Buddy", "8", "10", "", true, Location.MENDOZA, "Juan", getRandomImageUrl(), "golden", ""))
@@ -207,7 +206,6 @@ class MainActivity : AppCompatActivity() {
         initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
         initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
         initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "golden", ""))
-
 
         petDao?.insertAllPets(initialPets)
     }

@@ -25,6 +25,7 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -40,15 +41,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     override fun onStart() {
         super.onStart()
 
-        for(i in 1..6){
-            pets.add(PetEntity("Luna", "10", "15", "", false, "CABA", "Lautaro", "calle", ""))
-            pets.add(PetEntity("Tatu", "12", "20", "", true, "CABA", "Mateo", "pitbull", ""))
-            pets.add(PetEntity("Buddy", "8", "10", "", true, "CABA", "Juan", "golden", ""))
-            pets.add(PetEntity("Roma", "5", "11", "", false, "CABA", "Ariel", "chihuahua", ""))
-            pets.add(PetEntity("Cuqui", "2", "14", "", false, "CABA", "Ursula", "calle", ""))
-            pets.add(PetEntity("Paul", "3", "12", "", true, "CABA", "Matias", "golden", ""))
-        }
-
         requireActivity()
 
         recyclerPets.setHasFixedSize(true)
@@ -56,7 +48,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
         petsListAdapter = PetsListAdapter(pets, this)
         recyclerPets.layoutManager = linearLayoutManager
         recyclerPets.adapter = petsListAdapter
-
     }
 
    override fun onViewItemDetail(pet: PetEntity){
@@ -64,7 +55,4 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
        this.findNavController().navigate(action)
        Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
    }
-
-
-
 }

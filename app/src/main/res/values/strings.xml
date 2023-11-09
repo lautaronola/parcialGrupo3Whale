@@ -21,6 +21,12 @@
     <string name="txtEdit_welcome">Ingrese su nombre</string>
     <string name="txt_adoption">Adopción de Perritos</string>
     <string name="btn_welcome">Get Started</string>
+    <string name="pet_owner">Dueño</string>
+    <string name="adopt">Adoptar</string>
+    <string name="weight">Peso</string>
+
+
+
 
     <!-- activity_main -->
     <string name="nav_home">Home</string>

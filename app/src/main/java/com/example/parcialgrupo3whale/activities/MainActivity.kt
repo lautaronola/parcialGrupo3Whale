@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private var petDao: PetDao? = null
     private lateinit var petApiService : PetAPIService
     private var userName : String? = null
+    private var dbName : String? = "petDB"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         // Inicializa el servicio de la API
         petApiService = ServicePetApiBuilder.create()
-
-        // Popula la base de datos de Pets
-        populateDatabase()
 
         userName = intent.getStringExtra("userName")
         setUpToolbar()
@@ -72,6 +70,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigation() {
+        val bundle = Bundle()
+        bundle.putString("userName", userName)
+        bundle.putString("databaseName", dbName)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
@@ -104,8 +105,6 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_drawer_profile -> {
-                    val bundle = Bundle()
-                    bundle.putString("userName", userName)
                     navController.navigate(R.id.nav_drawer_profile, bundle)
                     drawerLayout.closeDrawers() // Cierra el DrawerLayout después de seleccionar el ítem
                     true
@@ -121,19 +120,19 @@ class MainActivity : AppCompatActivity() {
         btmNavView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
-                    navController.navigate(R.id.homeFragment)
+                    navController.navigate(R.id.homeFragment, bundle)
                     true
                 }
                 R.id.nav_favourites -> {
-                    navController.navigate(R.id.favouriteFragment)
+                    navController.navigate(R.id.favouriteFragment, bundle)
                     true
                 }
                 R.id.nav_adoption_form -> {
-                    navController.navigate(R.id.adoptionsFragment)
+                    navController.navigate(R.id.adoptionsFragment, bundle)
                     true
                 }
                 R.id.nav_adoptions -> {
-                    navController.navigate(R.id.adoptionFormFragment)
+                    navController.navigate(R.id.adoptionFormFragment, bundle)
                     true
                 }
                 else -> false
@@ -168,9 +167,6 @@ class MainActivity : AppCompatActivity() {
                     val petRandomImageResponse: PetRandomImageResponse? = response.body()
                     val imageUrl = petRandomImageResponse?.message ?: ""
                     url = imageUrl
-                    // Manejar la URL de la imagen
-                } else {
-                    // Manejar errores de la respuesta
                 }
             }
 
@@ -181,7 +177,6 @@ class MainActivity : AppCompatActivity() {
         })
         return url
     }
-
 
     private fun populateDatabase() {
         var initialPets = ArrayList<PetEntity>()

@@ -57,7 +57,7 @@
             tools:layout="@layout/fragment_detail" >
         <argument
                 android:name="petEntity"
-                app:argType="com.example.parcialgrupo3whale.entities.PetEntity"
+                app:argType="com.example.parcialgrupo3whale.database.entities.PetEntity"
                 app:nullable="true"/>
     </fragment>
 

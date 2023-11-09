@@ -1,7 +1,9 @@
 package com.example.parcialgrupo3whale.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -104,20 +106,24 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_drawer_profile -> {
+                    btmNavView.visibility = View.GONE
                     val bundle = Bundle()
                     bundle.putString("userName", userName)
-                    navController.navigate(R.id.nav_drawer_profile, bundle)
-                    drawerLayout.closeDrawers() // Cierra el DrawerLayout después de seleccionar el ítem
-                    true
+                    navController.navigate(R.id.action_global_nav_drawer_profile, bundle)
                 }
                 R.id.nav_drawer_configuration -> {
-                    navController.navigate(R.id.nav_drawer_configuration)
-                    drawerLayout.closeDrawers()
-                    true
+                    btmNavView.visibility = View.GONE
+                    navController.navigate(R.id.action_global_nav_drawer_configuration)
                 }
-                else -> false
+                else -> {
+                    supportActionBar?.show()
+                    btmNavView.visibility = View.VISIBLE
+                }
             }
+            drawerLayout.closeDrawers()  // Cierra el DrawerLayout después de seleccionar el ítem
+            true
         }
+
         btmNavView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
@@ -155,6 +161,13 @@ class MainActivity : AppCompatActivity() {
                     btmNavView.menu.findItem(R.id.nav_adoption_form).isChecked = true
                 }
             }
+        }
+    }
+
+    // lo llamamos desde setting fr y profile fr, para manejar visibilidad del navbar
+    fun setBottomNavViewVisibility(visibility: Int) {
+        if (btmNavView != null) {
+            btmNavView.setVisibility(visibility)
         }
     }
 

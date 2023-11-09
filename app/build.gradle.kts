@@ -49,7 +49,10 @@ android {
 }
 
 dependencies {
-    val navVersion = "2.5.3"
+    // Preference
+    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation("androidx.preference:preference:1.2.1")
+    val navVersion = "2.7.5"
     val roomVersion = "2.4.0"
 
     implementation("androidx.databinding:adapters:3.2.0-alpha11")

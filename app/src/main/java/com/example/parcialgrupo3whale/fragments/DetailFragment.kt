@@ -59,10 +59,8 @@ class DetailFragment : Fragment() {
                 }
             }
     }
-    fun call(view: View) {
-        val numeroTelefono = "123456789"
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$numeroTelefono"))
-        startActivity(intent)
-    }
+
+
+
 
 }

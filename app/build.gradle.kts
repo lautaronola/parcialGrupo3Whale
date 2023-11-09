@@ -49,9 +49,6 @@ android {
 }
 
 dependencies {
-    // Preference
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("androidx.preference:preference:1.2.1")
     val navVersion = "2.7.5"
     val roomVersion = "2.4.0"
 
@@ -67,6 +64,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
@@ -83,4 +83,8 @@ dependencies {
     implementation ("androidx.room:room-ktx:$roomVersion")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     kapt("androidx.room:room-compiler:$roomVersion")
+
+    // Preference
+    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation("androidx.preference:preference:1.2.1")
 }

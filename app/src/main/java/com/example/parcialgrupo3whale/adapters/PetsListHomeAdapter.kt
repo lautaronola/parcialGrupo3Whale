@@ -4,15 +4,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcialgrupo3whale.R
-import com.example.parcialgrupo3whale.entities.PetEntity
+import com.example.parcialgrupo3whale.database.dao.PetDao
+import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
+import com.example.parcialgrupo3whale.database.entities.PetEntity
+import com.example.parcialgrupo3whale.gateway.service.PetAPIService
+import com.example.parcialgrupo3whale.gateway.service.ServicePetApiBuilder
 import com.example.parcialgrupo3whale.holders.PetHolder
 import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
 
-class PetsListAdapter(
-    private val petsList : MutableList<PetEntity>,
-    private val onItemClickListener: OnDetailFragmentClickListener
+class PetsListHomeAdapter(
+    private var petsList: List<PetEntity>,
+    private val onItemClickListener: OnDetailFragmentClickListener,
+    private val db: WhaleDatabase?
 ) : RecyclerView.Adapter<PetHolder>(){
-
+    private var petDao: PetDao? = null
+    private var petApiService : PetAPIService
+    init {
+        petDao = db?.petDao()
+        petApiService = ServicePetApiBuilder.create()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetHolder {
         //parent = recyclerView, inflo la vista
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pets, parent, false)
@@ -28,6 +38,8 @@ class PetsListAdapter(
     // bindea/carga de datos a la vista al holder tantas veces como la cantidad de items en la lista
     override fun onBindViewHolder(holder: PetHolder, position: Int) {
         val pet = petsList[position]
+
+        holder.bind(pet)
 
         holder.getCardLayout().setOnClickListener{
             onItemClickListener.onViewItemDetail(pet)

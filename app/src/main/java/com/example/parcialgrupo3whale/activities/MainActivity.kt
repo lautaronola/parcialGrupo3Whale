@@ -1,7 +1,6 @@
 package com.example.parcialgrupo3whale.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private var petDao: PetDao? = null
     private lateinit var petApiService : PetAPIService
     private var userName : String? = null
+    private var dbName : String? = "petDB"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +74,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigation() {
+        val bundle = Bundle()
+        bundle.putString("userName", userName)
+        bundle.putString("databaseName", dbName)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
@@ -106,10 +109,9 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_drawer_profile -> {
-                    btmNavView.visibility = View.GONE
-                    val bundle = Bundle()
-                    bundle.putString("userName", userName)
-                    navController.navigate(R.id.action_global_nav_drawer_profile, bundle)
+                    navController.navigate(R.id.nav_drawer_profile, bundle)
+                    drawerLayout.closeDrawers() // Cierra el DrawerLayout después de seleccionar el ítem
+                    true
                 }
                 R.id.nav_drawer_configuration -> {
                     btmNavView.visibility = View.GONE
@@ -127,19 +129,19 @@ class MainActivity : AppCompatActivity() {
         btmNavView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
-                    navController.navigate(R.id.homeFragment)
+                    navController.navigate(R.id.homeFragment, bundle)
                     true
                 }
                 R.id.nav_favourites -> {
-                    navController.navigate(R.id.favouriteFragment)
+                    navController.navigate(R.id.favouriteFragment, bundle)
                     true
                 }
                 R.id.nav_adoption_form -> {
-                    navController.navigate(R.id.adoptionsFragment)
+                    navController.navigate(R.id.adoptionsFragment, bundle)
                     true
                 }
                 R.id.nav_adoptions -> {
-                    navController.navigate(R.id.adoptionFormFragment)
+                    navController.navigate(R.id.adoptionFormFragment, bundle)
                     true
                 }
                 else -> false
@@ -181,9 +183,6 @@ class MainActivity : AppCompatActivity() {
                     val petRandomImageResponse: PetRandomImageResponse? = response.body()
                     val imageUrl = petRandomImageResponse?.message ?: ""
                     url = imageUrl
-                    // Manejar la URL de la imagen
-                } else {
-                    // Manejar errores de la respuesta
                 }
             }
 
@@ -195,24 +194,21 @@ class MainActivity : AppCompatActivity() {
         return url
     }
 
-
     private fun populateDatabase() {
         var initialPets = ArrayList<PetEntity>()
 
-        // var breedsList = petApiService.getBreedsList()
 
-        for (i in 0..10) {
-            initialPets.add(PetEntity(i, "Luna", "10", "15", "", false, Location.CABA, "Lautaro", getRandomImageUrl(), "calle", ""))
-            initialPets.add(PetEntity(i, "Tatu", "12", "20", "", true, Location.CABA, "Mateo", getRandomImageUrl(), "pitbull", ""))
-            initialPets.add(PetEntity(i, "Buddy", "8", "10", "", true, Location.MENDOZA, "Juan", getRandomImageUrl(), "golden", ""))
-            initialPets.add(PetEntity(i, "Roma", "5", "11", "", false, Location.CABA, "Ariel", getRandomImageUrl(), "chihuahua", ""))
-            initialPets.add(PetEntity(i, "Cuqui", "2", "14", "", false, Location.TUCUMAN, "Ursula", getRandomImageUrl(), "calle", ""))
-            initialPets.add(PetEntity(i, "Paul", "3", "12", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
-            initialPets.add(PetEntity(i, "Pancho", "4", "10", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
-            initialPets.add(PetEntity(i, "Ulises", "5", "8", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
-            initialPets.add(PetEntity(i, "Rocco", "7", "19", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
-            initialPets.add(PetEntity(i, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "golden", ""))
-        }
+        initialPets.add(PetEntity(1, "Luna", "10", "15", "", false, Location.CABA, "Lautaro", getRandomImageUrl(), "calle", ""))
+        initialPets.add(PetEntity(2, "Tatu", "12", "20", "", true, Location.CABA, "Mateo", getRandomImageUrl(), "pitbull", ""))
+        initialPets.add(PetEntity(3, "Buddy", "8", "10", "", true, Location.MENDOZA, "Juan", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(4, "Roma", "5", "11", "", false, Location.CABA, "Ariel", getRandomImageUrl(), "chihuahua", ""))
+        initialPets.add(PetEntity(5, "Cuqui", "2", "14", "", false, Location.TUCUMAN, "Ursula", getRandomImageUrl(), "calle", ""))
+        initialPets.add(PetEntity(6, "Paul", "3", "12", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(7, "Pancho", "4", "10", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "golden", ""))
+
 
         petDao?.insertAllPets(initialPets)
     }

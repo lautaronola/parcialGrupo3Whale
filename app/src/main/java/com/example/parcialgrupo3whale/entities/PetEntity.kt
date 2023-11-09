@@ -1,71 +1,54 @@
 package com.example.parcialgrupo3whale.entities
-class PetEntity {
-    private val namePet: String;
-    private val agePet: String;
-    private val weightPet: String;
-    private val descriptionPet: String;
-    private val gender: Boolean;
-    private val location: String;
-    private val owner: String;
-    private val race: String;
-    private val subrace: String;
+import android.os.Parcel
+import android.os.Parcelable
 
-    constructor(namePet:String,agePet:String,weightPet:String,descriptionPet:String,
-                gender:Boolean,location:String,owner:String,race:String,subrace:String){
-        this.namePet = namePet;
-        this.agePet= agePet;
-        this.weightPet = weightPet;
-        this.descriptionPet = descriptionPet;
-        this.gender = gender;
-        this.location= location;
-        this.owner= owner;
-        this.race = race;
-        this.subrace = subrace;
-    }
-    override fun toString(): String {
-        return "Mascota en adoption(" +
-                "nombre='$namePet', " +
-                "edad='$agePet', " +
-                "peso=$weightPet, " +
-                "descripción='$descriptionPet', " +
-                "genero='$gender', " +
-                "ubicación='$location', " +
-                "cuidador='$owner', " +
-                "raza='$race', " +
-                "subraza='$subrace')"
-    }
+class PetEntity(
+    val namePet: String,
+    val agePet: String,
+    val weightPet: String,
+    val descriptionPet: String,
+    val gender: Boolean,
+    val location: String,
+    val owner: String,
+    val race: String,
+    val subrace: String
+) : Parcelable {
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+    constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readByte() != 0.toByte(),
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!
+    )
 
-        other as PetEntity
-
-        if (namePet != other.namePet) return false
-        if (agePet != other.agePet) return false
-        if (weightPet != other.weightPet) return false
-        if (descriptionPet != other.descriptionPet) return false
-        if (gender != other.gender) return false
-        if (location != other.location) return false
-        if (owner != other.owner) return false
-        if (race != other.race) return false
-        if (subrace != other.subrace) return false
-
-        return true
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(namePet)
+        parcel.writeString(agePet)
+        parcel.writeString(weightPet)
+        parcel.writeString(descriptionPet)
+        parcel.writeByte(if (gender) 1 else 0)
+        parcel.writeString(location)
+        parcel.writeString(owner)
+        parcel.writeString(race)
+        parcel.writeString(subrace)
     }
 
-    override fun hashCode(): Int {
-        var result = namePet.hashCode()
-        result = 31 * result + agePet.hashCode()
-        result = 31 * result + weightPet.hashCode()
-        result = 31 * result + descriptionPet.hashCode()
-        result = 31 * result + gender.hashCode()
-        result = 31 * result + location.hashCode()
-        result = 31 * result + owner.hashCode()
-        result = 31 * result + race.hashCode()
-        result = 31 * result + subrace.hashCode()
-        return result
+    override fun describeContents(): Int {
+        return 0
     }
 
+    companion object CREATOR : Parcelable.Creator<PetEntity> {
+        override fun createFromParcel(parcel: Parcel): PetEntity {
+            return PetEntity(parcel)
+        }
 
+        override fun newArray(size: Int): Array<PetEntity?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

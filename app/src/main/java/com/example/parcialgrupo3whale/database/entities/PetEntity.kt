@@ -1,4 +1,4 @@
-package com.example.parcialgrupo3whale.database.dao
+package com.example.parcialgrupo3whale.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

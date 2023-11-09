@@ -11,7 +11,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.room.Room
 import com.example.parcialgrupo3whale.R
+import com.example.parcialgrupo3whale.database.ParcialGrupo3Whale
+import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -28,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ParcialGrupo3Whale.database = Room.databaseBuilder(
+            applicationContext,
+            WhaleDatabase::class.java, "whale-database"
+        ).build()
+
         userName = intent.getStringExtra("userName")
         setUpToolbar()
         setUpNavigation()

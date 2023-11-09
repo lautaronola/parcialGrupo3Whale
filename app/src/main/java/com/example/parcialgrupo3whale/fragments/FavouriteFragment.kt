@@ -55,7 +55,7 @@ class FavouriteFragment : Fragment(), OnDetailFragmentClickListener {
     }
 
     override fun onViewItemDetail(pet: PetEntity){
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(pet)
+        val action = FavouriteFragmentDirections.actionFavouriteFragmentToDetailFragment(pet)
         this.findNavController().navigate(action)
         Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
     }

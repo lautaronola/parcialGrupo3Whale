@@ -55,7 +55,7 @@ class ProfileFragment : Fragment() {
 
         val navController = binding.root.findNavController()
 
-        binding.arrowBackImg.setOnClickListener {
+        /*binding.arrowBackImg.setOnClickListener {
 
             if (navController != null) navController.popBackStack(R.id.nav_graph_xml, false)
 
@@ -66,7 +66,7 @@ class ProfileFragment : Fragment() {
 
             navController.popBackStack()
             true
-        }
+        }*/
         super.onViewCreated(view, savedInstanceState)
     }
     private fun pickImageGallery() {

@@ -17,10 +17,14 @@ import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.databinding.ActivityMainBinding
 import com.example.parcialgrupo3whale.enums.Location
+import com.example.parcialgrupo3whale.gateway.model.PetRandomImageResponse
 import com.example.parcialgrupo3whale.gateway.service.PetAPIService
 import com.example.parcialgrupo3whale.gateway.service.ServicePetApiBuilder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -155,14 +159,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRandomImageUrl(): String {
-        var response = petApiService.getRandomImage()
+        val call: Call<PetRandomImageResponse> = petApiService.getRandomImage()
+        var url : String = ""
 
-        while (!response.isSuccessful) {
-            response = petApiService.getRandomImage()
-        }
+        call.enqueue(object : Callback<PetRandomImageResponse> {
+            override fun onResponse(call: Call<PetRandomImageResponse>, response: Response<PetRandomImageResponse>) {
+                if (response.isSuccessful) {
+                    val petRandomImageResponse: PetRandomImageResponse? = response.body()
+                    val imageUrl = petRandomImageResponse?.message ?: ""
+                    url = imageUrl
+                    // Manejar la URL de la imagen
+                } else {
+                    // Manejar errores de la respuesta
+                }
+            }
 
-        return response.body()?.message ?: ""
+            override fun onFailure(call: Call<PetRandomImageResponse>, t: Throwable) {
+                // Manejar errores de la red
+            }
+
+        })
+        return url
     }
+
 
     private fun populateDatabase() {
         var initialPets = ArrayList<PetEntity>()

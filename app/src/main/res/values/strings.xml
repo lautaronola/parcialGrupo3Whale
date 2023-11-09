@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ParcialGrupo3Whale</string>
     <string name="hello_blank_fragment">/hello_blank_fragment</string>
-    <string name="hint_WeightPet">Peso</string>
+    <string name="hint_WeighPet">Peso</string>
     <string name="hint_DescriptionPet">Descripción</string>
     <string name="hint_namePet">Nombre de mascota</string>
     <string name="hint_age">Edad</string>
@@ -37,8 +37,8 @@
     <string name="drawer_welcome">Hola</string>
     <string name="welcome_splash">Bienvenido! Cargando...</string>
     <string name="help_text">Ingrese la información de la mascota para crear la publicación de adopción.</string>
-    <string name="hint_race">Raza</string>
-    <string name="hint_subraza">Subraza</string>
+    <string name="hint_breed">Raza</string>
+    <string name="hint_subBreed">Subraza</string>
 
     <!-- Preference Titles -->
     <string name="config_tittle">Configuración</string>

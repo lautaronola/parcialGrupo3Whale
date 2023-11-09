@@ -53,7 +53,7 @@
                android:layout_marginEnd="@dimen/common_padding_min"
                app:endIconMode="clear_text"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintEnd_toStartOf="@+id/textLayoutWeightPet"
+               app:layout_constraintEnd_toStartOf="@+id/textLayoutWeighPet"
                app:layout_constraintTop_toTopOf="parent"
                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
            <com.google.android.material.textfield.TextInputEditText
@@ -62,14 +62,14 @@
                    android:layout_height="wrap_content"
                    android:inputType="number"
                    android:imeOptions="actionNext"
-                   android:nextFocusForward="@id/textEditWeightPet"/>
+                   android:nextFocusForward="@id/textEditWeighPet"/>
        </com.google.android.material.textfield.TextInputLayout>
 
        <com.google.android.material.textfield.TextInputLayout
-               android:id="@+id/textLayoutWeightPet"
+               android:id="@+id/textLayoutWeighPet"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:hint="@string/hint_WeightPet"
+               android:hint="@string/hint_WeighPet"
                android:layout_marginStart="@dimen/common_padding_min"
                app:endIconMode="clear_text"
                app:layout_constraintStart_toEndOf="@+id/textLayoutAgePet"
@@ -77,7 +77,7 @@
                app:layout_constraintTop_toTopOf="parent"
                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
            <com.google.android.material.textfield.TextInputEditText
-                   android:id="@+id/textEditWeightPet"
+                   android:id="@+id/textEditWeighPet"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:inputType="numberDecimal"
@@ -142,11 +142,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/common_padding_min"
-            android:hint="@string/hint_race"
+            android:hint="@string/hint_breed"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             >
         <AutoCompleteTextView
-                android:id="@+id/autocompleteRace"
+                android:id="@+id/autocompleteBreed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"/>
@@ -156,10 +156,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/common_padding_min"
-            android:hint="@string/hint_subraza"
+            android:hint="@string/hint_subBreed"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <AutoCompleteTextView
-                android:id="@+id/autocompleteSubrace"
+                android:id="@+id/autocompleteSubBreed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"/>

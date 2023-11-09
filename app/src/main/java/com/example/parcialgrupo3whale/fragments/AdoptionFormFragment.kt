@@ -11,13 +11,17 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
+import android.widget.Toast
 //import android.widget.AdapterView
 //import android.widget.ArrayAdapter
 //import android.widget.AutoCompleteTextView
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.dao.PetDao_Impl
+import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.databinding.FragmentAdoptionFormBinding
-import com.example.parcialgrupo3whale.entities.PetEntity
+import com.example.parcialgrupo3whale.database.entities.PetEntity
+import com.example.parcialgrupo3whale.enums.Location
+
 
 //import android.widget.RadioGroup
 
@@ -26,12 +30,12 @@ class AdoptionFormFragment : Fragment() {
     private lateinit var addButton: Button
     private lateinit var nameEditText: EditText
     private lateinit var ageEditText: EditText
-    private lateinit var weightEditText: EditText
+    private lateinit var weighEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var locationAutoCompleteTextView: AutoCompleteTextView
-    private lateinit var raceAutoCompleteTextView: AutoCompleteTextView
-    private lateinit var subraceAutoCompleteTextView: AutoCompleteTextView
+    private lateinit var breedAutoCompleteTextView: AutoCompleteTextView
+    private lateinit var subBreedAutoCompleteTextView: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,46 +50,62 @@ class AdoptionFormFragment : Fragment() {
         // Initialize your view references
         nameEditText = view.findViewById(R.id.textEditNamePet)
         ageEditText = view.findViewById(R.id.textEditAgePet)
-        weightEditText = view.findViewById(R.id.textEditWeightPet)
+        weighEditText = view.findViewById(R.id.textEditWeighPet)
         descriptionEditText = view.findViewById(R.id.textEditDescriptionPet)
         genderRadioGroup = view.findViewById(R.id.radioGroupGenres)
         locationAutoCompleteTextView = view.findViewById(R.id.autocompleteLocation)
-        raceAutoCompleteTextView = view.findViewById(R.id.autocompleteRace)
-        subraceAutoCompleteTextView = view.findViewById(R.id.autocompleteSubrace)
+        breedAutoCompleteTextView = view.findViewById(R.id.autocompleteBreed)
+        subBreedAutoCompleteTextView = view.findViewById(R.id.autocompleteSubBreed)
         addButton = view.findViewById(R.id.BtnAdoptionAdd)
 
         // Set up click listener for the add button
         addButton.setOnClickListener {
             val name = nameEditText.text.toString()
             val age = ageEditText.text.toString()
-            val weight = weightEditText.text.toString()
+            val weigh = weighEditText.text.toString()
             val description = descriptionEditText.text.toString()
-            val gender = genderRadioGroup.checkedRadioButtonId == R.id.radioButtonFemale
+            val selectedRadioButtonId = genderRadioGroup.checkedRadioButtonId
+            val gender: Boolean = selectedRadioButtonId == R.id.radioButtonFemale
             val location = locationAutoCompleteTextView.text.toString()
-            val race = raceAutoCompleteTextView.text.toString()
-            val subrace = subraceAutoCompleteTextView.text.toString()
+            val breed = breedAutoCompleteTextView.text.toString()
+            val subBreed = subBreedAutoCompleteTextView.text.toString()
             val owner = arguments?.getString("userName").toString()
 
+            if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || location.isNullOrEmpty() || breed.isNullOrEmpty() || subBreed.isNullOrEmpty() || owner.isNullOrEmpty()) {
+                Toast.makeText(context, "Formulario Incompleto! Faltan campos", Toast.LENGTH_SHORT).show()
+            } else {
             // Crear una instancia de PetEntity
-            val pet = PetEntity(name, age, weight, description, gender, location, owner, race, subrace)
+            val pet = PetEntity(
+                id = 0,
+                petName= name,
+                petAge = age,
+                petWeigh = weigh,
+                petDescription = description,
+                gender = gender,
+                location = Location.valueOf(location),
+                owner = owner,
+                breed = breed,
+                subBreed = subBreed
+            )
 
             // Loggear la información de la mascota
             Log.d("PetInfo", pet.toString())
 
             // Agregar la mascota a la lista
-            db.petDao().insertPet(pet)
+            val db = WhaleDatabase.getWhaleDatabase(requireContext())
+            db?.petDao()?.insertPet(pet)
+            }
         }
-
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setDataAdoptionPet()
-    }
-
-    private fun setDataAdoptionPet() {
-        //binding
-    }
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        setDataAdoptionPet()
+//    }
+//
+//    private fun setDataAdoptionPet() {
+//        //binding
+//    }
 }

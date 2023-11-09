@@ -11,6 +11,7 @@ import com.example.parcialgrupo3whale.database.entities.PetEntity
 @Database(entities = [PetEntity::class], version = 1, exportSchema = false)
 abstract class WhaleDatabase : RoomDatabase() {
     abstract fun petDao(): PetDao
+    abstract fun petFavDao(): PetFavDao
 
     companion object {
         var INSTANCE : WhaleDatabase? = null

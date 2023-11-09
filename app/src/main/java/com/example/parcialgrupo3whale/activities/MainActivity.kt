@@ -212,4 +212,9 @@ class MainActivity : AppCompatActivity() {
 
         petDao?.insertAllPets(initialPets)
     }
+
+    fun setToolbarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
 }

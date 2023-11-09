@@ -11,14 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.adapters.PetsListAdapter
-import com.example.parcialgrupo3whale.database.ParcialGrupo3Whale
-import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.entities.PetEntity
 import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var view : View
@@ -31,10 +26,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val pets = ParcialGrupo3Whale.database.petDao().getAllPets()
-
-        }
     }
 
     override fun onCreateView(
@@ -57,7 +48,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
         petsListAdapter = PetsListAdapter(pets, this)
         recyclerPets.layoutManager = linearLayoutManager
         recyclerPets.adapter = petsListAdapter
-
     }
 
    override fun onViewItemDetail(pet: PetEntity){

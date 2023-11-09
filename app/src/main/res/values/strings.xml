@@ -46,4 +46,8 @@
     <string name="hint_race">Raza</string>
     <string name="hint_subraza">Subraza</string>
 
+    <!-- Preference Titles -->
+    <string name="config_tittle">Configuración</string>
+    <string name="config_general">Generales</string>
+
 </resources>

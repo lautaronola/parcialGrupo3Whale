@@ -9,11 +9,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parcialgrupo3whale.R
+import com.example.parcialgrupo3whale.activities.MainActivity
+import com.example.parcialgrupo3whale.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var button: Button
     private lateinit var imageView: ImageView
 
@@ -30,7 +34,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        val view = binding.root
         val argumentValue = arguments?.getString("userName")
         val textView: TextView = view.findViewById(R.id.nameProfile)
 
@@ -46,13 +51,25 @@ class ProfileFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val navController = binding.root.findNavController()
 
+        binding.arrowBackImg.setOnClickListener {
 
+            if (navController != null) navController.popBackStack(R.id.nav_graph_xml, false)
 
+            if (activity is MainActivity) {
+                (activity as MainActivity).setBottomNavViewVisibility(View.VISIBLE)
+                (activity as MainActivity).supportActionBar?.show()
+            }
 
-
-private fun pickImageGallery() {
+            navController.popBackStack()
+            true
+        }
+        super.onViewCreated(view, savedInstanceState)
+    }
+    private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_REQUEST_CODE)

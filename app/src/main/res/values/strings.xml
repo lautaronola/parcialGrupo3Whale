@@ -19,7 +19,8 @@
     <string name="img_welcome">Perro de bienvenida</string>
     <string name="txtView_welcome">Bienvenido! Para continuar, por favor ingrese su nombre</string>
     <string name="txtEdit_welcome">Ingrese su nombre</string>
-    <string name="btn_welcome">Ingresar</string>
+    <string name="txt_adoption">Adopción de Perritos</string>
+    <string name="btn_welcome">Get Started</string>
 
     <!-- activity_main -->
     <string name="nav_home">Home</string>

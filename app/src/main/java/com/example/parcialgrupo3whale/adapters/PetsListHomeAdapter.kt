@@ -1,5 +1,6 @@
 package com.example.parcialgrupo3whale.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,10 +20,12 @@ class PetsListHomeAdapter(
 ) : RecyclerView.Adapter<PetHolder>(){
     private var petDao: PetDao? = null
     private var petApiService : PetAPIService
+
     init {
         petDao = db?.petDao()
         petApiService = ServicePetApiBuilder.create()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetHolder {
         //parent = recyclerView, inflo la vista
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pets, parent, false)
@@ -45,4 +48,11 @@ class PetsListHomeAdapter(
             onItemClickListener.onViewItemDetail(pet)
         }
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatePetsList(newPetsList: List<PetEntity>) {
+        petsList = newPetsList
+        notifyDataSetChanged()
+    }
+
 }

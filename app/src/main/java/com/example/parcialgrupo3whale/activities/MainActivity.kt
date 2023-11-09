@@ -2,6 +2,7 @@ package com.example.parcialgrupo3whale.activities
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,6 +12,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +35,30 @@ class MainActivity : AppCompatActivity() {
         userName = intent.getStringExtra("userName")
         setUpToolbar()
         setUpNavigation()
+
+        val favoriteButton = findViewById<ImageView>(R.id.favoriteButton)
+        favoriteButton.setOnClickListener {
+            if (isFavorite) {
+                // Si ya es favorito, cambia a vacío
+                favoriteButton.setImageResource(R.drawable.ic_favorite_empty)
+                isFavorite = false
+            } else {
+                // Si no es favorito, cambia a lleno
+                favoriteButton.setImageResource(R.drawable.ic_favorite_filled)
+                isFavorite = true
+            }
+        }
+        val imageViewBackground = findViewById<ImageView>(R.id.imageViewBackground)
+        //Aqui se debe reemplazar por el valor de la api
+        val imageUrl = "https://images.dog.ceo/breeds/setter-irish/n02100877_3141.jpg"
+
+        Glide.with(this)
+            .load(imageUrl)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .into(imageViewBackground)
     }
+
 
     private fun setUpToolbar() {
         val toolbar: Toolbar = binding.toolbar
@@ -135,5 +161,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
+
 }

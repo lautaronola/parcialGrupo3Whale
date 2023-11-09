@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
 
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_marginTop="7dp"
-        >
+        android:id="@+id/card_view_item">
 
     <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardReserva"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="0dp"
-            android:padding="0dp"
-            tools:layout_editor_absoluteY="112dp"
-            tools:layout_editor_absoluteX="16dp">
+            android:id="@+id/card_item"
+            android:layout_width="343dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+        <ImageView
+                android:id="@+id/imageViewBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteY="-35dp"
+                tools:layout_editor_absoluteX="-113dp">
 
             <ImageView
                     android:layout_width="38dp"
@@ -33,7 +40,54 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp" />
 
+            <TextView
+                    android:text="Nombre"
+                    android:layout_width="219dp"
+                    android:layout_height="23dp"
+                    android:id="@+id/name_dog"
+                    tools:layout_editor_absoluteY="89dp"
+                    tools:layout_editor_absoluteX="37dp"
+                    tools:ignore="MissingConstraints"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:text="Raza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/breeds_dog"
+                    tools:layout_editor_absoluteX="37dp"
+                    app:layout_constraintTop_toBottomOf="@+id/name_dog"
+                    tools:ignore="MissingConstraints"
+                    android:textSize="15dp"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:text="SubRaza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sub_breeds_dog"
+                    tools:layout_editor_absoluteX="37dp"
+                    app:layout_constraintTop_toBottomOf="@+id/breeds_dog"
+                    tools:ignore="MissingConstraints"
+                    android:textSize="15dp"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="188dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView7"
+                    tools:layout_editor_absoluteY="152dp"
+                    tools:layout_editor_absoluteX="139dp"
+                    tools:ignore="MissingConstraints"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="@color/white" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

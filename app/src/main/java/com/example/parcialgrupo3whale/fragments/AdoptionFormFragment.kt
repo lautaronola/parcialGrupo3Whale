@@ -1,6 +1,5 @@
 package com.example.parcialgrupo3whale.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,18 +11,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
-//import android.widget.AdapterView
-//import android.widget.ArrayAdapter
-//import android.widget.AutoCompleteTextView
 import com.example.parcialgrupo3whale.R
-import com.example.parcialgrupo3whale.database.dao.PetDao_Impl
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
-import com.example.parcialgrupo3whale.databinding.FragmentAdoptionFormBinding
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.enums.Location
-
-
-//import android.widget.RadioGroup
 
 class AdoptionFormFragment : Fragment() {
 

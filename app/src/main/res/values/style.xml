@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="GeneralesTitle">
+    <style name="config_general_title">
         <item name="android:textColor">#1B72C0</item>
     </style>
-
+    <style name="config_title">
+        <item name="android:textSize">20dp</item>
+    </style>
 </resources>

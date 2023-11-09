@@ -11,11 +11,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.room.Room
 import com.example.parcialgrupo3whale.R
-import com.example.parcialgrupo3whale.database.ParcialGrupo3Whale
+import com.example.parcialgrupo3whale.database.dao.PetDao
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
+import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.databinding.ActivityMainBinding
+import com.example.parcialgrupo3whale.enums.Location
+import com.example.parcialgrupo3whale.gateway.service.PetAPIService
+import com.example.parcialgrupo3whale.gateway.service.ServicePetApiBuilder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -25,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var btmNavView: BottomNavigationView
     private lateinit var navController: NavController
+    private var db : WhaleDatabase? = null
+    private var petDao: PetDao? = null
+    private lateinit var petApiService : PetAPIService
     private var userName : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +38,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = WhaleDatabase.getWhaleDatabase(this)
+        db = WhaleDatabase.getWhaleDatabase(this)
+        petDao = db?.petDao()
+
+        // Inicializa el servicio de la API
+        petApiService = ServicePetApiBuilder.create()
+
+        // Popula la base de datos de Pets
+        populateDatabase()
 
         userName = intent.getStringExtra("userName")
         setUpToolbar()
@@ -140,5 +153,36 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun getRandomImageUrl(): String {
+        var response = petApiService.getRandomImage()
+
+        while (!response.isSuccessful) {
+            response = petApiService.getRandomImage()
+        }
+
+        return response.body()?.message ?: ""
+    }
+
+    private fun populateDatabase() {
+        var initialPets = ArrayList<PetEntity>()
+
+        // var breedsList = petApiService.getBreedsList()
+
+        for (i in 0..10) {
+            initialPets.add(PetEntity(i, "Luna", "10", "15", "", false, Location.CABA, "Lautaro", getRandomImageUrl(), "calle", ""))
+            initialPets.add(PetEntity(i, "Tatu", "12", "20", "", true, Location.CABA, "Mateo", getRandomImageUrl(), "pitbull", ""))
+            initialPets.add(PetEntity(i, "Buddy", "8", "10", "", true, Location.MENDOZA, "Juan", getRandomImageUrl(), "golden", ""))
+            initialPets.add(PetEntity(i, "Roma", "5", "11", "", false, Location.CABA, "Ariel", getRandomImageUrl(), "chihuahua", ""))
+            initialPets.add(PetEntity(i, "Cuqui", "2", "14", "", false, Location.TUCUMAN, "Ursula", getRandomImageUrl(), "calle", ""))
+            initialPets.add(PetEntity(i, "Paul", "3", "12", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
+            initialPets.add(PetEntity(i, "Pancho", "4", "10", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
+            initialPets.add(PetEntity(i, "Ulises", "5", "8", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
+            initialPets.add(PetEntity(i, "Rocco", "7", "19", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
+            initialPets.add(PetEntity(i, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "golden", ""))
+        }
+
+        petDao?.insertAllPets(initialPets)
     }
 }

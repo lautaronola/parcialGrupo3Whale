@@ -7,7 +7,7 @@ import retrofit2.Response
 
 interface PetAPIService {
     @GET("/api/breeds/list/all")
-    suspend fun getBreedsList() : Response<PetBreedsAPIResponse>
+    fun getBreedsList() : Response<PetBreedsAPIResponse>
 
     @GET("api/breeds/image/random")
     fun getRandomImage() : Response<PetRandomImageResponse>

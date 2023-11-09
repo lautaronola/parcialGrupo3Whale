@@ -2,6 +2,7 @@ package com.example.parcialgrupo3whale.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.parcialgrupo3whale.enums.Location
 
 @Entity(tableName = "pets")
 data class PetEntity(
@@ -12,9 +13,9 @@ data class PetEntity(
     val petWeigh: String,
     val petDescription: String,
     val gender: Boolean,
-    val location: String,
+    val location: Location,
     val owner: String,
-    val images: List<String>,
+    val images: String,
     val breeds: String,
     val subBreeds: String
 )

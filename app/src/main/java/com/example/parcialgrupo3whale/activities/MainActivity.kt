@@ -189,7 +189,6 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<PetRandomImageResponse>, t: Throwable) {
                 // Manejar errores de la red
             }
-
         })
         return url
     }

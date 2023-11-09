@@ -22,7 +22,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        val view = binding.root
         val argumentValue = arguments?.getString("userName")
         val textView: TextView = view.findViewById(R.id.nameProfile)
 

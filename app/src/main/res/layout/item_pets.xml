@@ -85,6 +85,22 @@
                     android:fontFamily="@font/quicksand"
                     android:textColor="@color/white" />
 
+            <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    tools:srcCompat="@drawable/pads"
+                    android:id="@+id/imageView3"
+                    tools:layout_editor_absoluteY="107dp"
+                    app:layout_constraintEnd_toStartOf="@+id/breeds_dog" />
+
+            <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    tools:srcCompat="@drawable/pads"
+                    android:id="@+id/imageView4"
+                    tools:layout_editor_absoluteY="131dp"
+                    app:layout_constraintEnd_toStartOf="@+id/sub_breeds_dog" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

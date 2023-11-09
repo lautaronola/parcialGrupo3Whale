@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.kapt")
+    //id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,20 +38,25 @@ android {
         jvmTarget = "1.8"
     }
 
-
     buildFeatures{
         viewBinding = true
+    }
+
+    kapt {
+        correctErrorTypes = true
+        useBuildCache = true
     }
 }
 
 dependencies {
     val navVersion = "2.5.3"
+    val roomVersion = "2.4.0"
 
+    implementation("androidx.databinding:adapters:3.2.0-alpha11")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.activity:activity:1.4.0")
     testImplementation("junit:junit:4.13.2")
@@ -67,4 +73,9 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    // Rooms
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    implementation ("androidx.room:room-ktx:$roomVersion")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    kapt("androidx.room:room-compiler:$roomVersion")
 }

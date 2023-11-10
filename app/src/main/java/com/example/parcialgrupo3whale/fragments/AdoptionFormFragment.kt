@@ -11,10 +11,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.enums.Location
+import com.google.android.material.snackbar.Snackbar
 
 class AdoptionFormFragment : Fragment() {
 

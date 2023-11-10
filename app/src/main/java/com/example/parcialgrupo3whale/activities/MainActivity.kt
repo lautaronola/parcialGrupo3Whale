@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -111,11 +112,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_drawer_profile -> {
                     navController.navigate(R.id.nav_drawer_profile, bundle)
                     drawerLayout.closeDrawers() // Cierra el DrawerLayout después de seleccionar el ítem
-                    true
+                    setToolbarTitle("Profile")
                 }
                 R.id.nav_drawer_configuration -> {
-                    btmNavView.visibility = View.GONE
                     navController.navigate(R.id.action_global_nav_drawer_configuration)
+                    setToolbarTitle("Configuration")
                 }
                 else -> {
                     supportActionBar?.show()
@@ -152,15 +153,19 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment -> {
                     btmNavView.menu.findItem(R.id.nav_home).isChecked = true
+                    setToolbarTitle("Home")
                 }
                 R.id.favouriteFragment -> {
                     btmNavView.menu.findItem(R.id.nav_favourites).isChecked = true
+                    setToolbarTitle("Favourite")
                 }
                 R.id.adoptionFormFragment -> {
                     btmNavView.menu.findItem(R.id.nav_adoptions).isChecked = true
+                    setToolbarTitle("Adoption Form")
                 }
                 R.id.adoptionsFragment -> {
                     btmNavView.menu.findItem(R.id.nav_adoption_form).isChecked = true
+                    setToolbarTitle("Adoptions")
                 }
             }
         }
@@ -189,7 +194,6 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<PetRandomImageResponse>, t: Throwable) {
                 // Manejar errores de la red
             }
-
         })
         return url
     }
@@ -197,19 +201,22 @@ class MainActivity : AppCompatActivity() {
     private fun populateDatabase() {
         var initialPets = ArrayList<PetEntity>()
 
-
         initialPets.add(PetEntity(1, "Luna", "10", "15", "", false, Location.CABA, "Lautaro", getRandomImageUrl(), "calle", ""))
         initialPets.add(PetEntity(2, "Tatu", "12", "20", "", true, Location.CABA, "Mateo", getRandomImageUrl(), "pitbull", ""))
         initialPets.add(PetEntity(3, "Buddy", "8", "10", "", true, Location.MENDOZA, "Juan", getRandomImageUrl(), "golden", ""))
         initialPets.add(PetEntity(4, "Roma", "5", "11", "", false, Location.CABA, "Ariel", getRandomImageUrl(), "chihuahua", ""))
         initialPets.add(PetEntity(5, "Cuqui", "2", "14", "", false, Location.TUCUMAN, "Ursula", getRandomImageUrl(), "calle", ""))
-        initialPets.add(PetEntity(6, "Paul", "3", "12", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(7, "Pancho", "4", "10", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Matias", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Matias", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(6, "Paul", "3", "12", "", true, Location.CABA, "Pedro", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(7, "Pancho", "4", "10", "", true, Location.CORDOBA, "Lara", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Ignacio", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Jorge", getRandomImageUrl(), "golden", "", true))
         initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "golden", ""))
-
 
         petDao?.insertAllPets(initialPets)
     }
+
+    fun setToolbarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
 }

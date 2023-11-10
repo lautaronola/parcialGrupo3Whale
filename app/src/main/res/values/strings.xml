@@ -20,7 +20,10 @@
     <string name="txtView_welcome">Bienvenido! Para continuar, por favor ingrese su nombre</string>
     <string name="txtEdit_welcome">Ingrese su nombre</string>
     <string name="txt_adoption">Adopción de Perritos</string>
-    <string name="btn_welcome">Get Started</string>
+    <string name="btn_welcome">Ingresar</string>
+    <string name="pet_owner">Dueño</string>
+    <string name="adopt">Adoptar</string>
+    <string name="weight">Peso</string>
 
     <!-- activity_main -->
     <string name="nav_home">Home</string>
@@ -35,7 +38,7 @@
     <!-- fragment_setting -->
     <string name="drawer_configuration">Configuración</string>
     <string name="drawer_welcome">Hola</string>
-    <string name="welcome_splash">Bienvenido! Cargando...</string>
+    <string name="welcome_splash">Cargando...</string>
     <string name="help_text">Ingrese la información de la mascota para crear la publicación de adopción.</string>
     <string name="hint_breed">Raza</string>
     <string name="hint_subBreed">Subraza</string>

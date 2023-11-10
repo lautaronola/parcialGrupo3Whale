@@ -52,21 +52,6 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val navController = binding.root.findNavController()
-
-        binding.arrowBackImg.setOnClickListener {
-
-            if (navController != null) navController.popBackStack(R.id.nav_graph_xml, false)
-
-            if (activity is MainActivity) {
-                (activity as MainActivity).setBottomNavViewVisibility(View.VISIBLE)
-                (activity as MainActivity).supportActionBar?.show()
-            }
-
-            navController.popBackStack()
-            true
-        }
         super.onViewCreated(view, savedInstanceState)
     }
     private fun pickImageGallery() {

@@ -5,15 +5,16 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.parcialgrupo3whale.R
+import com.example.parcialgrupo3whale.adapters.PetsListHomeAdapter
 import com.example.parcialgrupo3whale.database.dao.PetDao
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var btmNavView: BottomNavigationView
+    private lateinit var searchView: SearchView
+    private lateinit var searchList: ArrayList<PetEntity>
+    private lateinit var petsAdapter: PetsListHomeAdapter
     private lateinit var navController: NavController
     private var db : WhaleDatabase? = null
     private var petDao: PetDao? = null
@@ -45,15 +49,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configuración inicial de la base de datos y API
         db = WhaleDatabase.getWhaleDatabase(this)
         petDao = db?.petDao()
-
-        // Inicializa el servicio de la API
         petApiService = ServicePetApiBuilder.create()
 
-        // Popula la base de datos de Pets
+        // Población inicial de la base de datos
         populateDatabase()
 
+        // Configuración del usuario y la navegación
         userName = intent.getStringExtra("userName")
         setUpToolbar()
         setUpNavigation()
@@ -207,10 +211,10 @@ class MainActivity : AppCompatActivity() {
         initialPets.add(PetEntity(4, "Roma", "5", "11", "", false, Location.CABA, "Ariel", getRandomImageUrl(), "chihuahua", ""))
         initialPets.add(PetEntity(5, "Cuqui", "2", "14", "", false, Location.TUCUMAN, "Ursula", getRandomImageUrl(), "calle", ""))
         initialPets.add(PetEntity(6, "Paul", "3", "12", "", true, Location.CABA, "Pedro", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(7, "Pancho", "4", "10", "", true, Location.CORDOBA, "Lara", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Ignacio", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Jorge", getRandomImageUrl(), "golden", "", true))
-        initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "golden", ""))
+        initialPets.add(PetEntity(7, "Pancho", "4", "10", "", true, Location.CORDOBA, "Lara", getRandomImageUrl(), "terrier", ""))
+        initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Ignacio", getRandomImageUrl(), "salchicha", ""))
+        initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Jorge", getRandomImageUrl(), "salchicha", "", true))
+        initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "terrier", ""))
 
         petDao?.insertAllPets(initialPets)
     }

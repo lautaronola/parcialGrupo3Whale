@@ -47,4 +47,13 @@
     <string name="config_tittle">Configuración</string>
     <string name="config_general">Generales</string>
 
+    <!-- fragment_home -->
+    <string name="search_hint">Buscador</string>
+    <string name="filter_text_home">Filtros</string>
+    <string name="filter_salchicha">Salchicha</string>
+    <string name="filter_golden">Golden</string>
+    <string name="filter_terrier">Terrier</string>
+    <string name="text_filtros">Filtros</string>
+    <string name="text_mas_filtros">Más Filtros</string>
+
 </resources>

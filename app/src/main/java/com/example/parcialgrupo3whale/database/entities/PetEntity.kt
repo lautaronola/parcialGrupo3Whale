@@ -27,18 +27,17 @@ data class PetEntity(
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
-    parcel.readInt(),
-    parcel.readString() ?: "",
-    parcel.readString() ?: "",
-    parcel.readString() ?: "",
-    parcel.readString() ?: "",
-    parcel.readByte() != 0.toByte(),
-    Location.valueOf(parcel.readString() ?: ""),
-    parcel.readString() ?: "",
-    parcel.readString() ?: "",
-    parcel.readString() ?: "",
-    parcel.readString() ?: "",
-    parcel.readByte() != 0.toByte()
+        parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readByte() != 0.toByte(),
+        Location.valueOf(parcel.readString() ?: ""),
+        parcel.readString() ?: "",
+        parcel.readString() ?: "https://images.dog.ceo/breeds/pomeranian/n02112018_863.jpg",
+        parcel.readString() ?: "",
+        parcel.readString() ?:"",
     )
 
     // Método para escribir el objeto en un Parcel

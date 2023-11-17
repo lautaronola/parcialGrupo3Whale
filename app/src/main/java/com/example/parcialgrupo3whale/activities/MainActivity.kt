@@ -1,5 +1,7 @@
 package com.example.parcialgrupo3whale.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -217,6 +219,12 @@ class MainActivity : AppCompatActivity() {
         initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "terrier", ""))
 
         petDao?.insertAllPets(initialPets)
+    }
+
+    fun call(view: View) {
+        val numeroTelefono = "123456789"
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$numeroTelefono"))
+        startActivity(intent)
     }
 
     fun setToolbarTitle(title: String) {

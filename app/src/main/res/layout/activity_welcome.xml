@@ -64,9 +64,6 @@
             android:layout_marginTop="544dp" />
 
 
-
-
-
     <Button
             android:id="@+id/btnEnterApp"
             android:layout_width="198dp"
@@ -80,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="123dp"
-            app:layout_constraintVertical_bias="0.933"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintVertical_bias="0.678"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

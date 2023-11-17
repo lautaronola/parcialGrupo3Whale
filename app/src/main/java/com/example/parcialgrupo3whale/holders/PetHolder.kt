@@ -35,6 +35,4 @@ class PetHolder (view: View) : RecyclerView.ViewHolder(view){
     fun getCardLayout() : CardView {
         return view.findViewById(R.id.card_view_item)
     }
-
-
 }

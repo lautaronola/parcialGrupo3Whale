@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/homeFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="750dp"
         tools:context=".fragments.HomeFragment">
 
     <!-- SearchView -->

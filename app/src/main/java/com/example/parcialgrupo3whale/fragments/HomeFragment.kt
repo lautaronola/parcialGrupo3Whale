@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var view : View
+    private lateinit var buttonMoreFilters: TextView
     private lateinit var recyclerPets : RecyclerView
     private lateinit var pets: List<PetEntity>
     private lateinit var linearLayoutManager : LinearLayoutManager
@@ -25,8 +29,22 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var searchView: androidx.appcompat.widget.SearchView
     private lateinit var chipGroupFilters: ChipGroup
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        buttonMoreFilters = view.findViewById(R.id.buttonMoreFilters)
+
+        buttonMoreFilters.setOnClickListener {
+            val popup = PopupMenu(requireContext(), buttonMoreFilters)
+            popup.inflate(R.menu.more_filters)
+            popup.setOnMenuItemClickListener {
+                Toast.makeText(requireContext(), "Item: " + it.title, Toast.LENGTH_SHORT).show()
+                true
+            }
+            popup.show()
+        }
     }
 
     override fun onCreateView(

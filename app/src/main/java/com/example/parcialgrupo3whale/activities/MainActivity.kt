@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
         userName = intent.getStringExtra("userName")
         setUpToolbar()
         setUpNavigation()
+
+
     }
 
     private fun setUpToolbar() {

@@ -67,11 +67,29 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
                 Toast.makeText(requireContext(), "Item: " + it.title, Toast.LENGTH_SHORT).show()
                 true
             }
+            popup.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.filterMacho -> filterByGender(true)  // Male
+                    R.id.filterHembra -> filterByGender(false) // Female
+                    // Agrega más opciones según sea necesario
+                    else -> false
+                }
+            }
             popup.show()
         }
 
         return view
     }
+    private fun filterByGender(isMale: Boolean): Boolean {
+        // Filtra la lista de mascotas basada en el género
+        val filteredList = pets.filter { it.gender == isMale }
+        // Actualiza el adaptador con la lista filtrada
+        petsListHomeAdapter.updatePetsList(filteredList)
+
+        // Devuelve true si el filtro se aplicó correctamente
+        return true
+    }
+
 
     private fun initializeRecyclerView(petsList: List<PetEntity>) {
         recyclerPets.setHasFixedSize(true)

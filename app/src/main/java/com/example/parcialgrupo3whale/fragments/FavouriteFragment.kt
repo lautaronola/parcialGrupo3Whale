@@ -59,4 +59,8 @@ class FavouriteFragment : Fragment(), OnDetailFragmentClickListener {
         this.findNavController().navigate(action)
         Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
     }
+
+    override fun onFavoriteButtonClick(pet: PetEntity) {
+        //TODO
+    }
 }

@@ -32,19 +32,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        buttonMoreFilters = view.findViewById(R.id.buttonMoreFilters)
-
-        buttonMoreFilters.setOnClickListener {
-            val popup = PopupMenu(requireContext(), buttonMoreFilters)
-            popup.inflate(R.menu.more_filters)
-            popup.setOnMenuItemClickListener {
-                Toast.makeText(requireContext(), "Item: " + it.title, Toast.LENGTH_SHORT).show()
-                true
-            }
-            popup.show()
-        }
     }
 
     override fun onCreateView(
@@ -69,6 +56,18 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
 
         chipGroupFilters = view.findViewById(R.id.chipGroupFilters)
         setupChipGroupListener()
+
+        buttonMoreFilters = view.findViewById(R.id.buttonMoreFilters)
+
+        buttonMoreFilters.setOnClickListener {
+            val popup = PopupMenu(requireContext(), buttonMoreFilters)
+            popup.inflate(R.menu.more_filters)
+            popup.setOnMenuItemClickListener {
+                Toast.makeText(requireContext(), "Item: " + it.title, Toast.LENGTH_SHORT).show()
+                true
+            }
+            popup.show()
+        }
 
         return view
     }

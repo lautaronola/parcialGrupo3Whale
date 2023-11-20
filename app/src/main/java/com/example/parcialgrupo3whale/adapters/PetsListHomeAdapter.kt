@@ -17,9 +17,9 @@ class PetsListHomeAdapter(
     private var petsList: List<PetEntity>,
     private val onItemClickListener: OnDetailFragmentClickListener,
     private val db: WhaleDatabase?
-) : RecyclerView.Adapter<PetHolder>(){
+) : RecyclerView.Adapter<PetHolder>() {
     private var petDao: PetDao? = null
-    private var petApiService : PetAPIService
+    private var petApiService: PetAPIService
 
     init {
         petDao = db?.petDao()
@@ -38,14 +38,16 @@ class PetsListHomeAdapter(
         return petsList.size
     }
 
-    // bindea/carga de datos a la vista al holder tantas veces como la cantidad de items en la lista
     override fun onBindViewHolder(holder: PetHolder, position: Int) {
         val pet = petsList[position]
-
         holder.bind(pet)
 
         holder.getCardLayout().setOnClickListener{
             onItemClickListener.onViewItemDetail(pet)
+        }
+
+        holder.getFavoriteImageView().setOnClickListener {
+            onItemClickListener.onFavoriteButtonClick(pet)
         }
     }
 
@@ -54,5 +56,4 @@ class PetsListHomeAdapter(
         petsList = newPetsList
         notifyDataSetChanged()
     }
-
 }

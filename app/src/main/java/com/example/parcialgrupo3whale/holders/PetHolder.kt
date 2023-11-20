@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 
-class PetHolder (view: View) : RecyclerView.ViewHolder(view){
+class PetHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private var view : View
+    private var view: View
 
     init {
         this.view = view
@@ -21,6 +21,7 @@ class PetHolder (view: View) : RecyclerView.ViewHolder(view){
     private val breedTextView: TextView = view.findViewById(R.id.breeds_dog)
     private val subBreedTextView: TextView = view.findViewById(R.id.sub_breeds_dog)
     private val petImageView: ImageView = view.findViewById(R.id.imageViewBackground)
+    private val favoriteImageView: ImageView = view.findViewById(R.id.favoriteButton)
 
     fun bind(pet: PetEntity) {
         petNameTextView.text = pet.petName
@@ -32,7 +33,11 @@ class PetHolder (view: View) : RecyclerView.ViewHolder(view){
             .into(petImageView)
     }
 
-    fun getCardLayout() : CardView {
+    fun getCardLayout(): CardView {
         return view.findViewById(R.id.card_view_item)
+    }
+
+    fun getFavoriteImageView(): ImageView {
+        return favoriteImageView
     }
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
+import java.time.Duration
 
 class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var view : View
@@ -106,6 +108,15 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
 
     private fun displayAllPets() {
         petsListHomeAdapter.updatePetsList(pets)
+    }
+
+    override fun onFavoriteButtonClick(pet: PetEntity) {
+        pet.isFavorite=true
+        val db = WhaleDatabase.getWhaleDatabase(requireContext())
+        db?.petDao()?.updatePet(pet)
+        val action = HomeFragmentDirections.actionHomeFragmentToFavouriteFragment()
+        this.findNavController().navigate(action)
+        Toast.makeText(context, "${pet.petName} agregado a favoritos!", Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -44,5 +44,14 @@ class PetsListFavAdapter(
         holder.getCardLayout().setOnClickListener{
             onItemClickListener.onViewItemDetail(pet)
         }
+
+        holder.getFavoriteImageView().setOnClickListener {
+            onItemClickListener.onFavoriteButtonClick(pet)
+        }
+    }
+
+    fun updatePetsList(newPetsList: List<PetEntity>) {
+        petsList = newPetsList
+        notifyDataSetChanged()
     }
 }

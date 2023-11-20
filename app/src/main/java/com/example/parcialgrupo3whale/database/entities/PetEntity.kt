@@ -23,7 +23,7 @@ data class PetEntity(
     val subBreed: String = "",
 
     @ColumnInfo(name = "is_favorite")
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(

@@ -38,6 +38,7 @@
         <action
                 android:id="@+id/action_homeFragment_to_detailFragment"
                 app:destination="@id/detailFragment" />
+        <action android:id="@+id/action_homeFragment_to_favouriteFragment" app:destination="@id/favouriteFragment"/>
     </fragment>
     <fragment
             android:id="@+id/favouriteFragment"

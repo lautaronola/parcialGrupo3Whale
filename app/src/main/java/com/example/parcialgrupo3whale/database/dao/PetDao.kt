@@ -30,4 +30,11 @@ interface PetDao {
 
     @Query("SELECT * FROM pets WHERE id = :id")
     fun loadPetById(id: Int): PetEntity
+
+    /*@Query("SELECT * FROM pets WHERE gender = 1")
+    fun getMale(): List<PetEntity>*/
+
+    /*@Query("SELECT * FROM pets WHERE gender = 0")
+   fun getFemale(): List<PetEntity>*/
+
 }

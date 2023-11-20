@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,7 @@ import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
 import com.google.android.material.snackbar.Snackbar
 
-class FavouriteFragment : Fragment(), OnDetailFragmentClickListener {
+class FavouriteFragment : Fragment(), OnDetailFragmentClickListener{
     private lateinit var view : View
     private lateinit var recyclerFavPets : RecyclerView
     private lateinit var pets: List<PetEntity>
@@ -61,6 +62,16 @@ class FavouriteFragment : Fragment(), OnDetailFragmentClickListener {
     }
 
     override fun onFavoriteButtonClick(pet: PetEntity) {
-        //TODO
+        pet.isFavorite = false
+        val db = WhaleDatabase.getWhaleDatabase(requireContext())
+        db?.petDao()?.updatePet(pet)
+
+        Toast.makeText(context, "${pet.petName} eliminado de favoritos", Toast.LENGTH_SHORT).show()
+
+        // Obtén la nueva lista de favoritos después de la actualización
+        val newPetsList = db?.petDao()?.getAllFavoritePets() ?: emptyList()
+
+        // Actualiza la lista en el adaptador
+        petsListFavAdapter.updatePetsList(newPetsList)
     }
 }

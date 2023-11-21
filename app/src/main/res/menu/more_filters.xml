@@ -8,5 +8,11 @@
     <item
             android:title="@string/female"
             android:id="@+id/filterHembra"></item>
+    <item
+            android:title="@string/puppy"
+            android:id="@+id/filterPuppy"></item>
+    <item
+            android:title="@string/adult"
+            android:id="@+id/filterAdult"></item>
 
 </menu>

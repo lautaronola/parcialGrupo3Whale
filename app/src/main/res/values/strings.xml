@@ -10,6 +10,8 @@
     <string name="location_label">Location</string>
     <string name="male">Macho</string>
     <string name="female">Hembra</string>
+    <string name="puppy">Cachorro</string>
+    <string name="adult">Perro Adulto</string>
 
     <!-- fragment_profile -->
     <string name="profile">Perfil</string>

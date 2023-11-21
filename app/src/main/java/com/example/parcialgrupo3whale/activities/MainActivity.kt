@@ -3,6 +3,7 @@ package com.example.parcialgrupo3whale.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -27,6 +28,9 @@ import com.example.parcialgrupo3whale.gateway.service.PetAPIService
 import com.example.parcialgrupo3whale.gateway.service.ServicePetApiBuilder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -186,40 +190,180 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getRandomImageUrl(): String {
-        val call: Call<PetRandomImageResponse> = petApiService.getRandomImage()
-        var url : String = ""
+    private suspend fun getRandomImageUrl(): String {
+        return withContext(Dispatchers.IO) {
+            val call: Call<PetRandomImageResponse> = petApiService.getRandomImage()
+            var url: String = ""
 
-        call.enqueue(object : Callback<PetRandomImageResponse> {
-            override fun onResponse(call: Call<PetRandomImageResponse>, response: Response<PetRandomImageResponse>) {
+            try {
+                val response = call.execute()
                 if (response.isSuccessful) {
                     val petRandomImageResponse: PetRandomImageResponse? = response.body()
-                    val imageUrl = petRandomImageResponse?.message ?: ""
-                    url = imageUrl
+                    url = petRandomImageResponse?.message ?: ""
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-
-            override fun onFailure(call: Call<PetRandomImageResponse>, t: Throwable) {
-                // Manejar errores de la red
-            }
-        })
-        return url
+            Log.e("WARNING", url)
+            url
+        }
     }
 
     private fun populateDatabase() {
         var initialPets = ArrayList<PetEntity>()
-
-        initialPets.add(PetEntity(1, "Luna", "10", "15", "", false, Location.CABA, "Lautaro", getRandomImageUrl(), "calle", ""))
-        initialPets.add(PetEntity(2, "Tatu", "12", "20", "", true, Location.CABA, "Mateo", getRandomImageUrl(), "pitbull", ""))
-        initialPets.add(PetEntity(3, "Buddy", "8", "10", "", true, Location.MENDOZA, "Juan", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(4, "Roma", "5", "11", "", false, Location.CABA, "Ariel", getRandomImageUrl(), "chihuahua", ""))
-        initialPets.add(PetEntity(5, "Cuqui", "2", "14", "", false, Location.TUCUMAN, "Ursula", getRandomImageUrl(), "calle", ""))
-        initialPets.add(PetEntity(6, "Paul", "3", "12", "", true, Location.CABA, "Pedro", getRandomImageUrl(), "golden", ""))
-        initialPets.add(PetEntity(7, "Pancho", "4", "10", "", true, Location.CORDOBA, "Lara", getRandomImageUrl(), "terrier", ""))
-        initialPets.add(PetEntity(8, "Ulises", "5", "8", "", true, Location.CABA, "Ignacio", getRandomImageUrl(), "salchicha", ""))
-        initialPets.add(PetEntity(9, "Rocco", "7", "19", "", true, Location.CORDOBA, "Jorge", getRandomImageUrl(), "salchicha", "", true))
-        initialPets.add(PetEntity(10, "Tobby", "2", "18", "", true, Location.MENDOZA, "Matias", getRandomImageUrl(), "terrier", ""))
-
+        runBlocking {
+            initialPets.add(
+                PetEntity(
+                    1,
+                    "Luna",
+                    "10",
+                    "15",
+                    "",
+                    false,
+                    Location.CABA,
+                    "Lautaro",
+                    getRandomImageUrl(),
+                    "calle",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    2,
+                    "Tatu",
+                    "12",
+                    "20",
+                    "",
+                    true,
+                    Location.CABA,
+                    "Mateo",
+                    getRandomImageUrl(),
+                    "pitbull",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    3,
+                    "Buddy",
+                    "8",
+                    "10",
+                    "",
+                    true,
+                    Location.MENDOZA,
+                    "Juan",
+                    getRandomImageUrl(),
+                    "golden",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    4,
+                    "Roma",
+                    "5",
+                    "11",
+                    "",
+                    false,
+                    Location.CABA,
+                    "Ariel",
+                    getRandomImageUrl(),
+                    "chihuahua",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    5,
+                    "Cuqui",
+                    "2",
+                    "14",
+                    "",
+                    false,
+                    Location.TUCUMAN,
+                    "Ursula",
+                    getRandomImageUrl(),
+                    "calle",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    6,
+                    "Paul",
+                    "3",
+                    "12",
+                    "",
+                    true,
+                    Location.CABA,
+                    "Pedro",
+                    getRandomImageUrl(),
+                    "golden",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    7,
+                    "Pancho",
+                    "4",
+                    "10",
+                    "",
+                    true,
+                    Location.CORDOBA,
+                    "Lara",
+                    getRandomImageUrl(),
+                    "terrier",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    8,
+                    "Ulises",
+                    "5",
+                    "8",
+                    "",
+                    true,
+                    Location.CABA,
+                    "Ignacio",
+                    getRandomImageUrl(),
+                    "salchicha",
+                    ""
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    9,
+                    "Rocco",
+                    "7",
+                    "19",
+                    "",
+                    true,
+                    Location.CORDOBA,
+                    "Jorge",
+                    getRandomImageUrl(),
+                    "salchicha",
+                    "",
+                    true
+                )
+            )
+            initialPets.add(
+                PetEntity(
+                    10,
+                    "Tobby",
+                    "2",
+                    "18",
+                    "",
+                    true,
+                    Location.MENDOZA,
+                    "Matias",
+                    getRandomImageUrl(),
+                    "terrier",
+                    ""
+                )
+            )
+        }
         petDao?.insertAllPets(initialPets)
     }
 

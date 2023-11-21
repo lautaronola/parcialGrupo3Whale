@@ -71,7 +71,8 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
                 when (menuItem.itemId) {
                     R.id.filterMacho -> filterByGender(true)  // Male
                     R.id.filterHembra -> filterByGender(false) // Female
-                    // Agrega más opciones según sea necesario
+                    R.id.filterPuppy -> filterByAge(true)  // Puppy
+                    R.id.filterAdult -> filterByAge(false) // Adult
                     else -> false
                 }
             }
@@ -87,6 +88,24 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
         petsListHomeAdapter.updatePetsList(filteredList)
 
         // Devuelve true si el filtro se aplicó correctamente
+        return true
+    }
+
+    private fun filterByAge(isPuppy: Boolean): Boolean {
+
+        val ageThreshold = if (isPuppy) 2 else 2
+        val filteredList = pets.filter { pet ->
+            val age = pet.petAge.toIntOrNull() ?: 0
+            if (isPuppy) {
+                age <= ageThreshold
+            } else {
+                age > ageThreshold
+            }
+        }
+
+        petsListHomeAdapter.updatePetsList(filteredList)
+
+
         return true
     }
 

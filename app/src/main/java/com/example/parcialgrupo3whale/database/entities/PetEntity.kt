@@ -23,7 +23,10 @@ data class PetEntity(
     val subBreed: String = "",
 
     @ColumnInfo(name = "is_favorite")
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    @ColumnInfo(name = "is_adopted")
+    var isAdopted: Boolean = false
+
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -54,6 +57,7 @@ data class PetEntity(
         parcel.writeString(breed)
         parcel.writeString(subBreed)
         parcel.writeByte(if (isFavorite) 1 else 0)
+        parcel.writeByte(if (isAdopted) 1 else 0)
     }
 
     // Método para describir los tipos de objetos especiales contenidos en el objeto Parcelable

@@ -17,8 +17,6 @@ import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.snackbar.Snackbar
-import java.time.Duration
 
 class HomeFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var view : View
@@ -127,7 +125,7 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
         linearLayoutManager = LinearLayoutManager(context)
 
         val db = WhaleDatabase.getWhaleDatabase(requireContext())
-        pets = db?.petDao()?.getAllPets() ?: emptyList()
+        pets = db?.petDao()?.getNotAdoptedPets() ?: emptyList()
 
         petsListHomeAdapter = PetsListHomeAdapter(pets, this, db)
         recyclerPets.layoutManager = linearLayoutManager
@@ -145,7 +143,6 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
    override fun onViewItemDetail(pet: PetEntity){
       val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(pet)
        this.findNavController().navigate(action)
-       Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
    }
 
     private fun setupChipGroupListener() {
@@ -170,6 +167,10 @@ class HomeFragment : Fragment(), OnDetailFragmentClickListener {
         val action = HomeFragmentDirections.actionHomeFragmentToFavouriteFragment()
         this.findNavController().navigate(action)
         Toast.makeText(context, "${pet.petName} agregado a favoritos!", Toast.LENGTH_SHORT).show()
+
+        val newPetsList = db?.petDao()?.getNotAdoptedPets() ?: emptyList()
+
+        petsListHomeAdapter.updatePetsList(newPetsList)
     }
 
 }

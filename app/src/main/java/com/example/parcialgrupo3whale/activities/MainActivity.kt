@@ -40,9 +40,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var btmNavView: BottomNavigationView
-    private lateinit var searchView: SearchView
-    private lateinit var searchList: ArrayList<PetEntity>
-    private lateinit var petsAdapter: PetsListHomeAdapter
     private lateinit var navController: NavController
     private var db : WhaleDatabase? = null
     private var petDao: PetDao? = null
@@ -204,7 +201,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-            Log.e("WARNING", url)
             url
         }
     }

@@ -68,10 +68,8 @@ class FavouriteFragment : Fragment(), OnDetailFragmentClickListener{
 
         Toast.makeText(context, "${pet.petName} eliminado de favoritos", Toast.LENGTH_SHORT).show()
 
-        // Obtén la nueva lista de favoritos después de la actualización
         val newPetsList = db?.petDao()?.getAllFavoritePets() ?: emptyList()
 
-        // Actualiza la lista en el adaptador
         petsListFavAdapter.updatePetsList(newPetsList)
     }
 }

@@ -6,17 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AutoCompleteTextView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.enums.Location
-import com.google.android.material.snackbar.Snackbar
+import com.example.parcialgrupo3whale.gateway.model.PetBreedsAPIResponse
+import com.example.parcialgrupo3whale.gateway.model.PetSubBreedAPIResponse
+import com.example.parcialgrupo3whale.gateway.service.PetAPIService
+import com.example.parcialgrupo3whale.gateway.service.ServicePetApiBuilder
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AdoptionFormFragment : Fragment() {
 
@@ -27,9 +33,7 @@ class AdoptionFormFragment : Fragment() {
     private lateinit var descriptionEditText: EditText
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var locationEditText: EditText
-    private lateinit var breedEditText: EditText
-    private lateinit var subBreedEditText: EditText
-//    private lateinit var locationAutoCompleteTextView: AutoCompleteTextView
+    private var petApiService : PetAPIService = ServicePetApiBuilder.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +52,67 @@ class AdoptionFormFragment : Fragment() {
         descriptionEditText = view.findViewById(R.id.textEditDescriptionPet)
         genderRadioGroup = view.findViewById(R.id.radioGroupGenres)
         locationEditText = view.findViewById(R.id.textEditLocationPet)
-        breedEditText = view.findViewById(R.id.textEditBreedPet)
-        subBreedEditText = view.findViewById(R.id.textEditSubBreedPet)
+        val autoCompleteBreedPet: MaterialAutoCompleteTextView = view.findViewById(R.id.autoCompleteBreedPet)
+        val autoCompleteSubBreedPet: MaterialAutoCompleteTextView = view.findViewById(R.id.autoCompleteSubBreedPet)
         addButton = view.findViewById(R.id.BtnAdoptionAdd)
 //        locationAutoCompleteTextView = view.findViewById(R.id.autocompleteLocation)
+
+        var breedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, listOf())
+        autoCompleteBreedPet.setAdapter(breedAdapter)
+
+        var subBreedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, listOf())
+        autoCompleteSubBreedPet.setAdapter(subBreedAdapter)
+
+
+        petApiService.getBreedsList().enqueue(object : Callback<PetBreedsAPIResponse> {
+            override fun onResponse(call: Call<PetBreedsAPIResponse>, response: Response<PetBreedsAPIResponse>) {
+                if (response.isSuccessful) {
+                    val breeds: MutableList<String> = response.body()?.message?.keys?.toMutableList() ?: mutableListOf()
+                    breedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, breeds)
+                    autoCompleteBreedPet.setAdapter(breedAdapter)
+                }
+            }
+
+            override fun onFailure(call: Call<PetBreedsAPIResponse>, t: Throwable) {
+                // Muestra un Toast con un mensaje de error
+                Toast.makeText(context, "Error al obtener la lista de razas de mascotas", Toast.LENGTH_SHORT).show()
+
+                // Imprimir el mensaje de error en el Logcat
+                Log.e("PetAPIService", "Error al obtener la lista de razas de mascotas", t)
+            }
+        })
+
+        autoCompleteBreedPet.setOnItemClickListener { _, _, position, _ ->
+            // Obtiene la raza seleccionada del adaptador
+            val selectedBreed = breedAdapter.getItem(position)
+
+            // Utiliza el servicio para obtener las subrazas asociadas con la raza seleccionada
+            if (selectedBreed != null) {
+                petApiService.getSubBreed(selectedBreed ?: "")
+                    .enqueue(object : Callback<PetSubBreedAPIResponse> {
+                        override fun onResponse(
+                            call: Call<PetSubBreedAPIResponse>,
+                            response: Response<PetSubBreedAPIResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                // Procesa la respuesta y actualiza el adaptador de subrazas
+                                val subBreeds: MutableList<String> = response.body()?.message?.toMutableList() ?: mutableListOf()
+                                subBreedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, subBreeds)
+                                autoCompleteSubBreedPet.setAdapter(subBreedAdapter)
+                            } else {
+                                Toast.makeText(context, "Error al obtener las subrazas de mascotas", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<PetSubBreedAPIResponse>, t: Throwable) {
+                            // Maneja el error aquí
+                            Toast.makeText(context, "Error al obtener las subrazas de mascotas", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+            }
+            // Limpia el campo de subraza cuando se selecciona una nueva raza
+            autoCompleteSubBreedPet.text.clear()
+        }
 
         // Set up click listener for the add button
         addButton.setOnClickListener {
@@ -62,8 +123,8 @@ class AdoptionFormFragment : Fragment() {
             val selectedRadioButtonId = genderRadioGroup.checkedRadioButtonId
             val gender: Boolean = selectedRadioButtonId == R.id.radioButtonFemale
 //            val locationEnum = locationAutoCompleteTextView.text.toString()
-            val breed = breedEditText.text.toString()
-            val subBreed = subBreedEditText.text.toString()
+            val breed = autoCompleteBreedPet.text.toString()
+            val subBreed = autoCompleteSubBreedPet.text.toString()
             val owner = arguments?.getString("userName").toString()
 
             if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || subBreed.isNullOrEmpty() || owner.isNullOrEmpty()) {
@@ -85,8 +146,9 @@ class AdoptionFormFragment : Fragment() {
 
             // Loggear la información de la mascota
             Log.d("PetInfo", pet.toString())
+            // Ej de lo que llega: PetEntity(id=0, petName=Kim, petAge=6, petWeigh=14, petDescription=Perro mediano tranquilo, gender=true, location=BUENOS_AIRES, owner=Juanchi, images=, breed=springer, subBreed=english, isFavorite=false)
 
-            // Agregar la mascota a la lista
+                // Agregar la mascota a la lista
             val db = WhaleDatabase.getWhaleDatabase(requireContext())
             db?.petDao()?.insertPet(pet)
             }

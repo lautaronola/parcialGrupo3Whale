@@ -160,11 +160,12 @@
                 android:hint="@string/hint_breed"
                 app:endIconMode="clear_text"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditBreedPet"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/autoCompleteBreedPet"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:inputType="text"
+                    android:completionThreshold="0"
                     android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,11 +177,12 @@
                 android:hint="@string/hint_subBreed"
                 app:endIconMode="clear_text"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditSubBreedPet"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/autoCompleteSubBreedPet"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:inputType="text"
+                    android:completionThreshold="0"
                     android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,6 @@ import com.example.parcialgrupo3whale.adapters.PetsListFavAdapter
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
-import com.google.android.material.snackbar.Snackbar
 
 class AdoptionsFragment : Fragment(), OnDetailFragmentClickListener {
     private lateinit var view : View
@@ -57,10 +57,14 @@ class AdoptionsFragment : Fragment(), OnDetailFragmentClickListener {
     override fun onViewItemDetail(pet: PetEntity){
         val action = AdoptionsFragmentDirections.actionAdoptionsFragmentToDetailFragment(pet)
         this.findNavController().navigate(action)
-        Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onFavoriteButtonClick(pet: PetEntity) {
-        TODO("Not yet implemented")
+        pet.isFavorite=true
+        val db = WhaleDatabase.getWhaleDatabase(requireContext())
+        db?.petDao()?.updatePet(pet)
+        val action = AdoptionsFragmentDirections.actionAdoptionsFragmentToFavouriteFragment()
+        this.findNavController().navigate(action)
+        Toast.makeText(context, "${pet.petName} agregado a favoritos!", Toast.LENGTH_SHORT).show()
     }
 }

@@ -45,5 +45,7 @@ interface PetDao {
 
     @Query("SELECT * FROM pets WHERE gender = 0")
    fun getFemale(): List<PetEntity>
+    @Query("SELECT * FROM pets WHERE is_adopted = 0 OR is_favorite = 0")
+   fun getNotAdoptedPets(): List<PetEntity>
 
 }

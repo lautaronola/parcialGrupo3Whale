@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.parcialgrupo3whale.R
+import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 
 class DetailFragment : Fragment() {
@@ -46,6 +50,28 @@ class DetailFragment : Fragment() {
             Glide.with(requireContext())
                 .load(it.images)
                 .into(imageView)
+        }
+
+        val adoptButton: Button = view.findViewById(R.id.adopt_button)
+
+        petEntity?.let { currentPetEntity ->
+            if (currentPetEntity.isAdopted) {
+                adoptButton.isEnabled = false
+                adoptButton.text = "Ya adoptado"
+            } else {
+                adoptButton.isEnabled = true
+                adoptButton.setOnClickListener {
+                    currentPetEntity.isAdopted = true
+
+                    val db = WhaleDatabase.getWhaleDatabase(requireContext())
+                    db?.petDao()?.updatePet(currentPetEntity)
+
+                    val action = DetailFragmentDirections.actionDetailFragmentToAdoptionsFragment()
+                    this.findNavController().navigate(action)
+
+                    Toast.makeText(context, "${currentPetEntity.petName} ha sido adoptado!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         return view

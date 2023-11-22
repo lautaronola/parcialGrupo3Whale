@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.entities.PetEntity
 
@@ -31,6 +33,7 @@ class DetailFragment : Fragment() {
         val weightTextView: TextView = view.findViewById(R.id.weight_pet_detail)
         val genderTextView: TextView = view.findViewById(R.id.gender_pet_detail)
         val ownerTextView: TextView = view.findViewById(R.id.name_petOwner_detail)
+        val imageView: ImageView = view.findViewById(R.id.image_detail_pet)
 
         petEntity?.let {
             petNameTextView.text = it.petName
@@ -39,6 +42,10 @@ class DetailFragment : Fragment() {
             weightTextView.text = it.petWeigh
             genderTextView.text = if (it.gender) "Male" else "Female"
             ownerTextView.text = it.owner
+
+            Glide.with(requireContext())
+                .load(it.images)
+                .into(imageView)
         }
 
         return view

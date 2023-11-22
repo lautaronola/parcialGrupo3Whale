@@ -6,8 +6,6 @@
         android:layout_height="match_parent"
         tools:context=".fragments.FavouriteFragment">
 
-    <!-- Acá tiene que ir el buscador -->
-
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

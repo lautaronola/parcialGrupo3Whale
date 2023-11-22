@@ -26,10 +26,6 @@
             android:id="@+id/nav_drawer_configuration"
             android:name="com.example.parcialgrupo3whale.fragments.SettingsFragment" />
 
-<!--    <fragment-->
-<!--            android:id="@+id/nav_drawer_configuration"-->
-<!--            android:name="com.example.parcialgrupo3whale.configuracion2" />-->
-
     <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.parcialgrupo3whale.fragments.HomeFragment"
@@ -58,7 +54,11 @@
             android:id="@+id/adoptionsFragment"
             android:name="com.example.parcialgrupo3whale.fragments.AdoptionsFragment"
             android:label="fragment_adoptions"
-            tools:layout="@layout/fragment_adoptions" />
+            tools:layout="@layout/fragment_adoptions" >
+        <action
+                android:id="@+id/action_adoptionsFragment_to_detailFragment"
+                app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
             android:id="@+id/detailFragment"
             android:name="com.example.parcialgrupo3whale.fragments.DetailFragment"
@@ -68,6 +68,9 @@
                 android:name="petEntity"
                 app:argType="com.example.parcialgrupo3whale.database.entities.PetEntity"
                 app:nullable="true"/>
+        <action
+                android:id="@+id/action_detailFragment_to_adoptionsFragment"
+                app:destination="@id/adoptionsFragment" />
     </fragment>
 
 </navigation>

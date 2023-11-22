@@ -1,27 +1,23 @@
 package com.example.parcialgrupo3whale.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.parcialgrupo3whale.R
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.parcialgrupo3whale.database.entities.PetEntity
 
 class DetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var petEntity: PetEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            petEntity = it.getParcelableOrNull(PET_ENTITY)
         }
     }
 
@@ -29,27 +25,44 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+
+        val petNameTextView: TextView = view.findViewById(R.id.name_pet_detail)
+        val ageTextView: TextView = view.findViewById(R.id.age_detail_pet)
+        val locationTextView: TextView = view.findViewById(R.id.city_pet_detail)
+        val weightTextView: TextView = view.findViewById(R.id.weight_pet_detail)
+        val genderTextView: TextView = view.findViewById(R.id.gender_pet_detail)
+        val ownerTextView: TextView = view.findViewById(R.id.name_petOwner_detail)
+        val imageView: ImageView = view.findViewById(R.id.image_detail_pet)
+
+        petEntity?.let {
+            petNameTextView.text = it.petName
+            ageTextView.text = it.petAge
+            locationTextView.text = it.location.toString()
+            weightTextView.text = it.petWeigh
+            genderTextView.text = if (it.gender) "Male" else "Female"
+            ownerTextView.text = it.owner
+
+            Glide.with(requireContext())
+                .load(it.images)
+                .into(imageView)
+        }
+
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+        const val PET_ENTITY = "petEntity"
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(petEntity: PetEntity) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putParcelable(PET_ENTITY, petEntity)
                 }
             }
     }
 }
+
+private fun Bundle.getParcelableOrNull(petEntity: String): PetEntity? =
+    this.getParcelable(petEntity)

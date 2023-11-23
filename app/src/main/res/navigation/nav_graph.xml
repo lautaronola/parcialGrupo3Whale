@@ -68,7 +68,7 @@
     <fragment
             android:id="@+id/detailFragment"
             android:name="com.example.parcialgrupo3whale.fragments.DetailFragment"
-            android:label="fragment_detail"
+            android:label="Detail"
             tools:layout="@layout/fragment_detail" >
         <argument
                 android:name="petEntity"

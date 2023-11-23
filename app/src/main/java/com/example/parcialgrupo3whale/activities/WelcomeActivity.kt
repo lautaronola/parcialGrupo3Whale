@@ -21,6 +21,8 @@ class WelcomeActivity : AppCompatActivity() {
             binding.btnEnterApp.setOnClickListener {
                 userName = binding.editTextName.text.toString()
                 Toast.makeText(this, "Bienvenido $userName!", Toast.LENGTH_SHORT).show()
+                binding.btnEnterApp.isEnabled = false
+                binding.btnEnterApp.text = "Iniciando sesion..."
                 navigateToMainActivity()
             }
         }

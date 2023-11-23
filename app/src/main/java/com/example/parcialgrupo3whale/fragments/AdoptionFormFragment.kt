@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.parcialgrupo3whale.R
 import com.example.parcialgrupo3whale.database.dao.WhaleDatabase
 import com.example.parcialgrupo3whale.database.entities.PetEntity
@@ -19,13 +20,15 @@ import com.example.parcialgrupo3whale.gateway.model.PetBreedsAPIResponse
 import com.example.parcialgrupo3whale.gateway.model.PetSubBreedAPIResponse
 import com.example.parcialgrupo3whale.gateway.service.PetAPIService
 import com.example.parcialgrupo3whale.gateway.service.ServicePetApiBuilder
+import com.example.parcialgrupo3whale.listener.OnDetailFragmentClickListener
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AdoptionFormFragment : Fragment() {
-
+class AdoptionFormFragment : Fragment(), OnDetailFragmentClickListener {
+    private lateinit var view : View
     private lateinit var addButton: Button
     private lateinit var nameEditText: EditText
     private lateinit var ageEditText: EditText
@@ -43,7 +46,7 @@ class AdoptionFormFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_adoption_form, container, false)
+        view = inflater.inflate(R.layout.fragment_adoption_form, container, false)
 
         // Initialize your view references
         nameEditText = view.findViewById(R.id.textEditNamePet)
@@ -132,7 +135,6 @@ class AdoptionFormFragment : Fragment() {
             val breed = autoCompleteBreedPet.text.toString()
             val subBreed = autoCompleteSubBreedPet.text.toString()
             val owner = arguments?.getString("userName").toString()
-            val subBreedsListString = subBreedsList.toString()
             val breedListString = breedsList.toString()
 
             if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || owner.isNullOrEmpty() || subBreed.isNullOrEmpty()) {
@@ -156,7 +158,8 @@ class AdoptionFormFragment : Fragment() {
                 location = Location.BUENOS_AIRES, // Location hardcodeada. Esperaba location = Location.valueOf(locationEnum),
                 owner = owner,
                 breed = breed,
-                subBreed = subBreed
+                subBreed = subBreed,
+                images = "https://images.dog.ceo/breeds/pomeranian/n02112018_863.jpg"
             )
 
             // Loggear la información de la mascota
@@ -166,7 +169,18 @@ class AdoptionFormFragment : Fragment() {
                 // Agregar la mascota a la lista
             val db = WhaleDatabase.getWhaleDatabase(requireContext())
             db?.petDao()?.insertPet(pet)
+            onViewItemDetail(pet)
         }
         return view
+    }
+
+    override fun onViewItemDetail(pet: PetEntity){
+        val action = AdoptionFormFragmentDirections.actionAdoptionFormFragmentToDetailFragment(pet)
+        this.findNavController().navigate(action)
+        Snackbar.make(view, pet.toString(), Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onFavoriteButtonClick(pet: PetEntity) {
+        TODO("Not yet implemented")
     }
 }

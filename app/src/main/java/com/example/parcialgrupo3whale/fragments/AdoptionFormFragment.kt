@@ -135,27 +135,19 @@ class AdoptionFormFragment : Fragment() {
             val subBreedsListString = subBreedsList.toString()
             val breedListString = breedsList.toString()
 
-            if (subBreed.isNullOrEmpty() && !subBreedsListString.isNullOrEmpty()){
+            if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || owner.isNullOrEmpty() || subBreed.isNullOrEmpty()) {
                 Toast.makeText(context, "Formulario Incompleto! Faltan campos", Toast.LENGTH_SHORT).show()
-            } else if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || owner.isNullOrEmpty()) {
-                Toast.makeText(context, "Formulario Incompleto! Faltan campos", Toast.LENGTH_SHORT).show()
-            } else {
-                 // Verificar si la raza seleccionada está en la lista de razas
-                if (!breedListString.contains(breed)) {
-                    Toast.makeText(context, "Raza no válida", Toast.LENGTH_SHORT).show()
-                    autoCompleteBreedPet.text.clear() // Limpiar el campo si la raza no es válida
-                    return@setOnClickListener
-                }
-                // Verificar si la subraza seleccionada está en la lista de subrazas
-                if (!subBreedsListString.contains(subBreed)) {
-                    Toast.makeText(context, "Subraza no válida", Toast.LENGTH_SHORT).show()
-                    autoCompleteSubBreedPet.text.clear() // Limpiar el campo si la subraza no es válida
-                    return@setOnClickListener
-                }
+                return@setOnClickListener
+            }
+            // Verificar si la raza seleccionada está en la lista de razas
+            if (!breedListString.contains(breed)) {
+                Toast.makeText(context, "Raza no válida", Toast.LENGTH_SHORT).show()
+                autoCompleteBreedPet.text.clear() // Limpiar el campo si la raza no es válida
+                return@setOnClickListener
+            }
 
             // Crear una instancia de PetEntity
             val pet = PetEntity(
-                id = 0,
                 petName= name,
                 petAge = age,
                 petWeigh = weigh,
@@ -174,7 +166,6 @@ class AdoptionFormFragment : Fragment() {
                 // Agregar la mascota a la lista
             val db = WhaleDatabase.getWhaleDatabase(requireContext())
             db?.petDao()?.insertPet(pet)
-            }
         }
         return view
     }

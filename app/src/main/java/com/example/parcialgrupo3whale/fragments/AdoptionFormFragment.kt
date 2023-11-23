@@ -56,6 +56,8 @@ class AdoptionFormFragment : Fragment() {
         val autoCompleteSubBreedPet: MaterialAutoCompleteTextView = view.findViewById(R.id.autoCompleteSubBreedPet)
         addButton = view.findViewById(R.id.BtnAdoptionAdd)
 //        locationAutoCompleteTextView = view.findViewById(R.id.autocompleteLocation)
+        var subBreedsList: MutableList<String>? = null
+        var breedsList: MutableList<String>? = null
 
         var breedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, listOf())
         autoCompleteBreedPet.setAdapter(breedAdapter)
@@ -67,8 +69,10 @@ class AdoptionFormFragment : Fragment() {
         petApiService.getBreedsList().enqueue(object : Callback<PetBreedsAPIResponse> {
             override fun onResponse(call: Call<PetBreedsAPIResponse>, response: Response<PetBreedsAPIResponse>) {
                 if (response.isSuccessful) {
-                    val breeds: MutableList<String> = response.body()?.message?.keys?.toMutableList() ?: mutableListOf()
-                    breedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, breeds)
+                    breedsList = response.body()?.message?.keys?.toMutableList() ?: mutableListOf()
+                    breedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line,
+                        breedsList!!
+                    )
                     autoCompleteBreedPet.setAdapter(breedAdapter)
                 }
             }
@@ -96,8 +100,10 @@ class AdoptionFormFragment : Fragment() {
                         ) {
                             if (response.isSuccessful) {
                                 // Procesa la respuesta y actualiza el adaptador de subrazas
-                                val subBreeds: MutableList<String> = response.body()?.message?.toMutableList() ?: mutableListOf()
-                                subBreedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, subBreeds)
+                                subBreedsList = response.body()?.message?.toMutableList() ?: mutableListOf()
+                                subBreedAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line,
+                                    subBreedsList!!
+                                )
                                 autoCompleteSubBreedPet.setAdapter(subBreedAdapter)
                             } else {
                                 Toast.makeText(context, "Error al obtener las subrazas de mascotas", Toast.LENGTH_SHORT).show()
@@ -126,10 +132,27 @@ class AdoptionFormFragment : Fragment() {
             val breed = autoCompleteBreedPet.text.toString()
             val subBreed = autoCompleteSubBreedPet.text.toString()
             val owner = arguments?.getString("userName").toString()
+            val subBreedsListString = subBreedsList.toString()
+            val breedListString = breedsList.toString()
 
-            if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || subBreed.isNullOrEmpty() || owner.isNullOrEmpty()) {
+            if (subBreed.isNullOrEmpty() && !subBreedsListString.isNullOrEmpty()){
+                Toast.makeText(context, "Formulario Incompleto! Faltan campos", Toast.LENGTH_SHORT).show()
+            } else if (name.isNullOrEmpty() || age.isNullOrEmpty() || weigh.isNullOrEmpty() || description.isNullOrEmpty() || breed.isNullOrEmpty() || owner.isNullOrEmpty()) {
                 Toast.makeText(context, "Formulario Incompleto! Faltan campos", Toast.LENGTH_SHORT).show()
             } else {
+                 // Verificar si la raza seleccionada está en la lista de razas
+                if (!breedListString.contains(breed)) {
+                    Toast.makeText(context, "Raza no válida", Toast.LENGTH_SHORT).show()
+                    autoCompleteBreedPet.text.clear() // Limpiar el campo si la raza no es válida
+                    return@setOnClickListener
+                }
+                // Verificar si la subraza seleccionada está en la lista de subrazas
+                if (!subBreedsListString.contains(subBreed)) {
+                    Toast.makeText(context, "Subraza no válida", Toast.LENGTH_SHORT).show()
+                    autoCompleteSubBreedPet.text.clear() // Limpiar el campo si la subraza no es válida
+                    return@setOnClickListener
+                }
+
             // Crear una instancia de PetEntity
             val pet = PetEntity(
                 id = 0,

@@ -49,7 +49,11 @@
             android:id="@+id/adoptionFormFragment"
             android:name="com.example.parcialgrupo3whale.fragments.AdoptionFormFragment"
             android:label="fragment_adoption_form"
-            tools:layout="@layout/fragment_adoption_form" />
+            tools:layout="@layout/fragment_adoption_form" >
+        <action
+                android:id="@+id/action_adoptionFormFragment_to_detailFragment"
+                app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
             android:id="@+id/adoptionsFragment"
             android:name="com.example.parcialgrupo3whale.fragments.AdoptionsFragment"
